@@ -1,0 +1,14 @@
+.x-rounded-field-wrp {
+	padding-left : 15px;
+	padding-right : 15px;
+}
+
+.x-rounded-field {
+	height : 16px;
+	margin-top : 7px;
+	margin-bottom : 6px;
+	
+	border : 0px solid;
+	
+	background-color : #f9f9f9;
+}

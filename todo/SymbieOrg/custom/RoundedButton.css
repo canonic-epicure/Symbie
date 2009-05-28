@@ -1,0 +1,14 @@
+.x-rounded-button {
+	cursor : default;
+	text-align : center;
+	vertical-align : middle;
+	line-height : 30px;
+	margin-bottom : 1px;
+}
+
+.x-mouse-down {
+	position : relative;
+	top : 1px;
+	left : 0px;
+	margin-bottom : 0px;
+}

@@ -1,0 +1,56 @@
+
+.greeting {
+	padding-top : 0px;
+	padding-bottom : 20px;
+}
+
+
+.overview_section {
+	line-height : 24px;
+	height : 24px;
+	font-size : 17px;
+	
+	background-color : #ccea69;
+	
+	float : left;
+	
+	margin-top : 12px;
+	
+	padding-left : 20px;
+	padding-right : 15px;
+	margin-right : 5px;
+	margin-left : -15px;
+}
+
+
+.overview_section_nature {
+	margin-top : 17px;
+}
+
+
+.x-home-section-icon {
+	height : 48px;
+	width : 48px;
+	float : left;
+	background-repeat : no-repeat;
+	position : relative;
+}
+
+
+.x-home-overview {
+	background-image : url(/static/images/icon/overview48.png);
+}
+
+
+.x-home-nature {
+	background-image : url(/static/images/icon/nature48.png);
+}
+
+
+.x-home-state {
+	background-image : url(/static/images/icon/state48.png);
+}
+
+.overview_section_padding {
+	margin-top : 7px;
+}

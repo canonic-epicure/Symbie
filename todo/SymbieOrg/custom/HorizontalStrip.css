@@ -1,0 +1,43 @@
+.x-horizontal-strip-scroller {
+	width : 31px;
+	height : 31px;
+	position : absolute;
+	left : 10px;
+}
+
+
+.x-horizontal-strip-scroll-left {
+	background-image : url(/static/images/buttons/round/left-inactive.png);
+	background-repeat : no-repeat;
+}
+
+.x-horizontal-strip-scroll-left-active {
+	background-image : url(/static/images/buttons/round/left-active.png);
+}
+
+
+
+.x-horizontal-strip-wrapper {
+	position : relative;
+}
+
+
+.x-horizontal-strip-scroll-right {
+	background-image : url(/static/images/buttons/round/right-inactive.png);
+	background-repeat : no-repeat;
+}
+
+.x-horizontal-strip-scroll-right-active {
+	background-image : url(/static/images/buttons/round/right-active.png);
+}
+
+
+
+
+.x-horizontal-strip-scroll-left-disabled {
+	background-image : url(/static/images/buttons/round/left-inactive.png) !important;
+}
+
+.x-horizontal-strip-scroll-right-disabled {
+	background-image : url(/static/images/buttons/round/right-inactive.png) !important;
+}

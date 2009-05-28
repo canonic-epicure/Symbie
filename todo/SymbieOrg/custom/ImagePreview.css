@@ -1,0 +1,14 @@
+.x-image-preview-fullsize-wrp {
+	position : absolute;
+	z-index : 20000;
+}
+
+.x-image-preview-fullsize {
+	/*position : absolute;
+	left : 0px;
+	top : 0px;*/
+}
+
+.x-image-preview-source {
+	cursor : pointer;
+}
