@@ -8,7 +8,7 @@ my $build = Module::Build::JSAN->new(
 	create_makefile_pl => 'passthrough',
 	dist_version   => 0.01,
 	dist_author   => 'SamuraiJack',
-	dist_abstract  => 'Framework for web-applications which looks like web-sites',
+	dist_abstract  => 'Framework for web-applications that looks like web-sites',
 	license        => 'perl'
 );
 
