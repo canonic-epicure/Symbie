@@ -34,30 +34,26 @@
 			Test.Run.Harness.Browser.Multi.my.configure({
 				title : 'Symbie test suite',
 				
-				//disableCaching : false,
 				passThroughEx : true,
 				
-				preload : 'core'
+				preload : [
+                    '/inc/Task/Joose/core.js',
+                    "/inc/Task/ExtJS/Adapter/Ext.js",
+                    '/inc/JooseX/Bridge/Ext.js',
+                    '/inc/JooseX/Bridge/Ext/Convertor.js',
+                    "/inc/Task/ExtJS/Debug/All.js",
+				    
+				    "/inc/JooseX/SimpleRequest.js",
+				    '/inc/Task/JooseX/Namespace/Depended/core.js',
+				    {
+				        text : "JooseX.Namespace.Depended.Manager.my.INC = [ '../lib', '/inc' ]"
+				    }
+			    ]
 			})
 			
 			
 			Test.Run.Harness.Browser.Multi.my.start(
-				'010_proto_class.t.js',
-				'011_propertyset.t.js',
-				'012_propertyset_mutable.t.js',
-				'020_managed_class.t.js',
-				'021_method_modifiers.t.js',
-				'022_inheriting_from_proto_class.t.js',
-				'031_managed_role.t.js',
-				'032_role_application_basic.t.js',
-				'040_my_symbiont.t.js',
-				'045_role_builder.t.js',
-				'050_helpers.t.js',
-				'051_advanced_attribute.t.js',
-				'052_role_application_advanced.t.js',
-				'053_using_class_as_role.t.js',
-				'055_role_to_instance_application.t.js',
-				'060_modules.t.js'
+				'010_widget.t.js'
 			)
 		</script>
 	</body>
