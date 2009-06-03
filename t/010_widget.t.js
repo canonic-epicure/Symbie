@@ -22,10 +22,7 @@ StartTest(function(t) {
             
             does : Symbie.Widget,
             
-            id : {
-                attr1 : null,
-                attr2 : null
-            }
+            id : [ 'attr1', 'attr2' ]
         
         })
         
@@ -33,6 +30,18 @@ StartTest(function(t) {
         t.ok(SiteHome.meta.hasAttribute('attr1') && SiteHome.meta.getAttribute('attr1').required, "SiteHome has required 'attr1' attribute")
         t.ok(SiteHome.meta.hasAttribute('attr2') && SiteHome.meta.getAttribute('attr2').required, "SiteHome has required 'attr2' attribute")
         
+        var siteHome = new SiteHome({
+            attr1 : 1,
+            attr2 : 2
+        })
+        
+        t.ok(siteHome, "siteHome was created")
+        
+        t.throws_ok(function() {
+            var siteHome1 = new SiteHome({
+                attr1 : 1
+            })
+        }, "Required parameter [attr2] (part of [SiteHome]'s id is not supplied", 'Missing parts of ID are detecting')
         
         t.endAsync(async1)
     })
