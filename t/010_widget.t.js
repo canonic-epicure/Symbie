@@ -1,12 +1,11 @@
 StartTest(function(t) {
-	t.plan(1)
+	t.plan(10)
 	
-    //==================================================================================================================================================================================
-    t.diag("Sanity")
-    
     var async1 = t.beginAsync()
     
     use('Symbie.Widget', function () {
+        //==================================================================================================================================================================================
+        t.diag("Sanity")
         
         t.ok(Symbie.Widget, "Symbie.Widget is here")
         
@@ -15,6 +14,10 @@ StartTest(function(t) {
         
         t.ok(Symbie.Widget.Attribute.ID.Builder, "Symbie.Widget.Attribute.ID.Builder is here")
         t.ok(Symbie.Widget.Attribute.ID.Builder.meta.constructor == Joose.Meta.Role, "Symbie.Widget.Attribute.ID.Builder is a role")
+        
+        
+        //==================================================================================================================================================================================
+        t.diag("Widget class creation")
         
         Class('SiteHome', {
             
@@ -36,6 +39,10 @@ StartTest(function(t) {
         })
         
         t.ok(siteHome, "siteHome was created")
+        
+        
+        //==================================================================================================================================================================================
+        t.diag("Checking ID during instantiation")
         
         t.throws_ok(function() {
             var siteHome1 = new SiteHome({
