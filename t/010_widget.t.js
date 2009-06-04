@@ -39,7 +39,7 @@ StartTest(function(t) {
         })
         
         t.ok(siteHome, "siteHome was created")
-        
+        t.ok(siteHome.id == 'SiteHome:1:2', "siteHome has a correct 'id'")
         
         //==================================================================================================================================================================================
         t.diag("Checking ID during instantiation")

@@ -27,7 +27,7 @@ StartTest(function(t) {
         
         t.ok(path.elements[0] instanceof Symbie.Dispatcher.PathElement.Root, '0th element isa Symbie.Dispatcher.PathElement.Root')
         t.ok(path.elements[1] instanceof Symbie.Dispatcher.PathElement.Widget, '1th element isa Symbie.Dispatcher.PathElement.Widget')
-        t.ok(path.elements[2] instanceof Symbie.Dispatcher.PathElement.Slot, '1th element isa Symbie.Dispatcher.PathElement.Slot')
+        t.ok(path.elements[2] instanceof Symbie.Dispatcher.PathElement.Slot, '2th element isa Symbie.Dispatcher.PathElement.Slot')
         
         
         var widget = path.elements[1]
