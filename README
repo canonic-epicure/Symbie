@@ -1,1 +1,94 @@
 Framework for web-applications that looks like web-sites
+
+Предпосылки:
+
+Веб2.0-сайт/приложение. Сервер передает только данные, не HTML
+Сайт состоит только из виджетов. Каждый виджет - экземпляр своего класса (наследника от Ext.Container)
+Виджет "знает" как отрендерить себя, какие ему нужны для этого данные итп
+Виджеты могут содержать другие виджеты.
+
+Получаем собственно дерево виджетов. Примем, что корень дерева - Ext.Viewport, хотя это и не обязательно (вложенные приложения)
+
+И это дерево нужно как-то адресовать - в чем собственно идея и состоит. 
+Нечто похожее на XPath, лучше на примере
+
+скажем приложение 'App' визуально состоит из header, content, footer
+Эту информацию отразим в виджете App.Layout.Site
+
+Class('App.Layout.Site', {
+    isa : Ext.Container,
+    
+    does : Symbie.Widget,
+    
+    //дальше условно
+    layout : 'rowfit',
+       
+    items : [
+        {
+            slot : 'header',
+            height : 100
+        },
+        {
+            slot : 'content',
+            height : 500
+        },
+        {
+            slot : 'footer',
+            height : 100
+        }
+    ]
+})
+
+
+у приложения есть диспетчер.. скажем мы хотим отобразить App.CoolWidget в слоте 'content'
+для этого мы должны скормить диспетчеру такую строку:
+
+/App.Layout.Site/.content/App.CoolWidget
+
+затем скажем мы переключаем режим и хотим отобразить тот же виджет но в другой раскладке
+
+/App.Layout.Another/App.CoolWidget
+
+диспетчер действует так
+- разбивает "путь" на компоненты (через '/'). Содержимое компонента - это название класса, либо слота
+- если это класс - загружает класс, создает экземпляр и помещает его в items'ы предыдущего компонента
+-- если экземпляр уже создан - перемещает его
+- если слот - делает переход по слоту от предыдщего компонента
+
+Дальше предположим App.CoolWidget принимает несколько параметров, тогда строка становится такой:
+
+/App.Layout.Site/.content/App.CoolWidget(JSON_FRAGMENT)
+
+JSON_FRAGMENT также url escaped
+
+
+/App.Layout.Site/.content/App.CoolWidget(JSON_FRAGMENT)
+/App.Layout.Another/App.CoolWidget(JSON)
+
+/Travel.MainLayout/.center/Travel.Place.Pictures({place_id:10})
+/Travel.MainLayout/.center/Travel.Place.All({fromDate:'01.01.01', toDate : '02.02.02'})
+
+http://be-travel.ru/navigate?path=/Travel.MainLayout/.center/Travel.Place.All({fromDate:'01.01.01', toDate : '02.02.02'})
+
+эти строки - что-то вроде внутреннего url
+
+они же могут быть и внешними, но лучше наверно их пропускать через роутер ala RoR
+
+router.connect('/places/all/:fromDate/:toDate', '/Travel.MainLayout/.center/Travel.Place.All($params)')
+
+Каждый виджет получает набор id-аттрибутов - аналог primary key в SQL
+
+типа:
+
+Class('Widget', {
+    id : [ 'attr1', 'attr2' ]
+})
+
+если мы создаем экземпляр: widget = new Widget({ attr1 : 'z', attr2 : 'a'}), то
+widget.id == 'Widget:z:a'
+
+
+
+
+
+Собственно вот это вкратце все ядро фрэймворка - все остальное уже будут плагины - для навигации, авторизации, работы с данными итп
