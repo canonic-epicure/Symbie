@@ -1,9 +1,5 @@
 StartTest(function(t) {
 	
-    JooseX.Namespace.Depended.Resource.JS.meta.extend({
-        does : JooseX.Namespace.Depended.Transport.AjaxSync
-    })
-    
     t.plan(10)
     
     var async1 = t.beginAsync()

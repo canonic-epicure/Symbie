@@ -42,14 +42,14 @@
 				passThroughEx : true,
 				
 				preload : [
-                    '/jsan/Task/Joose/core.js',
+                    '/jsan/Task/Joose/Core.js',
                     "/jsan/Task/ExtJS/Adapter/Ext.js",
                     '/jsan/JooseX/Bridge/Ext.js',
                     '/jsan/JooseX/Bridge/Ext/Convertor.js',
                     "/jsan/Task/ExtJS/Debug/All.js",
 				    
 				    "/jsan/JooseX/SimpleRequest.js",
-				    '/jsan/Task/JooseX/Namespace/Depended/core.js',
+				    '/jsan/Task/JooseX/Namespace/Depended/Web.js',
                     {
                         text : "JooseX.Namespace.Depended.Manager.my.INC = " + Ext.encode(INC)
                     }
@@ -58,8 +58,7 @@
 			
 			
 			Test.Run.Harness.Browser.Multi.my.start(
-				'010_widget.t.js',
-				'020_dispatch_path.t.js'
+				'010_application.t.js'
 			)
 		</script>
 	</body>

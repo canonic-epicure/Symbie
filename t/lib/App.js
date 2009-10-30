@@ -1,6 +1,6 @@
 Class('App', {
     
-    use : [ 'App.Home' ],
+//    use : [ 'App.Home' ],
     
     isa : 'Symbie.Application',
     
