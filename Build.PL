@@ -1,17 +1,19 @@
-use lib "$ENV{HOME}/Workspace/EclipseWorkspace/JSAN/module-build-jsan/lib";
+use inc::Module::JSAN::DSL;
 
-use Module::Build::JSAN;
+name            Symbie
 
-my $build = Module::Build::JSAN->new(
+version         0.01
+author          'Nickolay (SamuraiJack) Platonov <root@symbie.org>'
 
-	module_name    => 'Symbie',
-	create_makefile_pl => 'passthrough',
-	dist_version   => 0.01,
-	dist_author   => 'SamuraiJack',
-	dist_abstract  => 'Framework for web-applications that looks like web-sites',
-	license        => 'perl'
-);
-
-$build->create_build_script;
+abstract        'Framework for web-applications that looks like web-sites'
+license         lgpl
 
 
+requires        Joose                           3.01
+requires        JooseX.Attribute                0.01
+requires        JooseX.CPS                      0.01
+requires        JooseX.Namespace.Depended       0.01
+
+test_requires   Test.Run                        0.01
+
+docs_markup     mmd

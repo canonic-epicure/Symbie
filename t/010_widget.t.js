@@ -1,6 +1,11 @@
 StartTest(function(t) {
-	t.plan(10)
 	
+    JooseX.Namespace.Depended.Resource.JS.meta.extend({
+        does : JooseX.Namespace.Depended.Transport.AjaxSync
+    })
+    
+    t.plan(10)
+    
     var async1 = t.beginAsync()
     
     use('Symbie.Widget', function () {
@@ -29,7 +34,7 @@ StartTest(function(t) {
         
         })
         
-        t.ok(typeof SiteHome != 'undefined', 'SiteHome was created')
+        t.ok(SiteHome, 'SiteHome was created')
         t.ok(SiteHome.meta.hasAttribute('attr1') && SiteHome.meta.getAttribute('attr1').required, "SiteHome has required 'attr1' attribute")
         t.ok(SiteHome.meta.hasAttribute('attr2') && SiteHome.meta.getAttribute('attr2').required, "SiteHome has required 'attr2' attribute")
         
