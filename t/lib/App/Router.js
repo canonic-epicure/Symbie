@@ -20,6 +20,8 @@ Class('App.Router', {
         
         '/pictures/all/:fromDate/:toDate' : {
             
+            name : 'all-pictures',
+            
 //            use : [ 'JooseJsOrg.Layout.Site', 'JooseJsOrg.Pictures.All' ],
             
             realize : function (route) {
@@ -50,7 +52,7 @@ Class('App.Router', {
     index/root : {
         
         realize : function (route) {
-            route.dispatchTo('/home')
+            route.redirectTo('/home')
         }
     },
     

@@ -1,23 +1,25 @@
 Class('App', {
     
-    my : {
-    //    use : [ 'App.Home' ],
+    isa : 'Ext.Viewport',
+    
+    does : 'Symbie.Widget.Root',
+    
+    use : [ 'App.Router' ],
+    
+    
+    has : {
+        routerClass : Joose.FutureClass('App.Router'),
         
-        isa : 'Symbie.Application',
+        title : 'Symbie test application'
+    },
+    
+    
+    after : {
         
-        
-        have : {
-            name : 'app'
-        },
-        
-        
-        after : {
-            
-            onReady : function () {
-    //            Ext.getBody().update('Hello world')
-            }
-            
+        onReady : function () {
+//            Ext.getBody().update('Hello world')
         }
+        
     }
     
 })
