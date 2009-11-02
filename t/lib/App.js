@@ -1,21 +1,23 @@
 Class('App', {
     
-//    use : [ 'App.Home' ],
-    
-    isa : 'Symbie.Application',
-    
-    
-    have : {
-        name : 'app'
-    },
-    
-    
-    after : {
+    my : {
+    //    use : [ 'App.Home' ],
         
-        onReady : function () {
-//            Ext.getBody().update('Hello world')
+        isa : 'Symbie.Application',
+        
+        
+        have : {
+            name : 'app'
+        },
+        
+        
+        after : {
+            
+            onReady : function () {
+    //            Ext.getBody().update('Hello world')
+            }
+            
         }
-        
     }
     
 })
