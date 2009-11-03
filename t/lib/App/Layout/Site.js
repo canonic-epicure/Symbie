@@ -1,4 +1,4 @@
-ExtClass('App.Layout.Site', {
+Class('App.Layout.Site', {
     
     isa : Ext.Container,
     
@@ -10,22 +10,27 @@ ExtClass('App.Layout.Site', {
         initComponent : function () {
             Ext.apply(this, {
                 
-                layout : 'column',
                 
                 items : [
                     {
-                        columnWidth : 0.5,
-                        slot : 'left'
+                        xtype : 'container',
+                        slot : 'header',
+                        
+                        height : 300
                     },
                     
                     {
-                        width : 980,
-                        slot : 'center'
+                        xtype : 'container',
+                        slot : 'center',
+                        
+                        height : 600
                     },
                     
                     {
-                        columnWidth : 0.5,
-                        slot : 'right'
+                        xtype : 'container',
+                        slot : 'footer',
+                        
+                        height : 300
                     }
                 ]
             })

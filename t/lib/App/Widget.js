@@ -10,6 +10,12 @@ Class('App.Widget', {
     id : {
         pkField : null
     },
+    
+    
+    has : {
+        slots       : true,
+        attr1       : 'value1'
+    },
 
     
     after : {
