@@ -4,13 +4,13 @@ Class('App', {
     
         isa : 'Symbie.Application',
         
-        use : 'App.Root',
+        use : 'App.Widget.Root',
     
         
         methods : {
             
             setup : function () {
-                this.root = new App.Root()
+                this.root = new App.Widget.Root()
             }
         }
     }
