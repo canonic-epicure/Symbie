@@ -27,14 +27,8 @@
         <script type="text/javascript">
             JooseX.Namespace.Depended.Manager.my.INC = [ '../lib', '../../lib', '/jsan' ]
             
-            var initialRoute = '/'
-            
-            use('App', function () {
-                
-                var app = new App()
-                
-                app.my.run()
-            
+            use([ 'App' ], function () {
+                App.my.run()
             })
             
         </script>

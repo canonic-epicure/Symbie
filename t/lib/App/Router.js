@@ -3,7 +3,7 @@ Class('App.Router', {
     isa : 'Symbie.Router',
     
     
-    actions : {
+    routes : {
         
         
         home : {
@@ -19,7 +19,8 @@ Class('App.Router', {
             mapTo : '/pictures/all/:fromDate/:toDate',
             
             where : {
-                fromDate : /\d\d-\d\d-\d{4}/
+                fromDate    : /\d\d-\d\d-\d{4}/,
+                toDate      : /.*/
             },
             
             via : function (route) {
@@ -49,77 +50,36 @@ Class('App.Router', {
         },
         
         
+        wiki : {
+            
+            mapTo : '/wiki/*',
+            
+            via : function (route) {
+                var path = route.getPath()
+            }
+        
+        },
+        
+        
         index : {
             mapTo : '/',
             
             via : function (route) {
+                route.forward('home')
+            }
+        },
+        
+        
+        defaultRoute : {
+            
+            mapTo : '/*',
                 
+            via : function (route) {
+                route.activate('App.Layout.FullScreen').activate('App.Widget.NotFound')
             }
         }
+        
     }
-    
-    
-    connect : {
-        
-        '/home' : {
-            
-            name : 'home',
-            
-            realize : function (route) {
-                route.activate('App.Layout.Site').slot('center').activate('App.Home')
-            } 
-        }
-    },
-    
-    
-    root : {
-        
-//        name : 'root',
-        
-        realize : function (route) {
-            route.forward('home')
-        }
-    },
-    
-    
-    defaultRoute : {
-            
-        realize : function (route) {
-            route.activate('App.Layout.FullScreen').activate('App.Widget.NotFound')
-        }
-    }
+    //eof actions
        
 })
-
-
-
-//        '/pictures/all/:fromDate/:toDate' : {
-//            
-//            name : 'all-pictures',
-//            
-////            use : [ 'JooseJsOrg.Layout.Site', 'JooseJsOrg.Pictures.All' ],
-//            
-//            realize : function (route) {
-//                var params  = route.getParams()
-//                var root    = route.getRoot()
-//                
-//                root.activate('JooseJsOrg.Layout.Site').slot('center').activate('JooseJsOrg.Pictures.All', {
-//                    fromDate : params.fromDate,
-//                    toDate : params.toDate
-//                })
-//            }
-//        },
-//            
-//        '/picture/:id' : {
-//            
-//            realize : function (route) {
-//                var params  = route.getParams()
-//                var root    = route.getRoot()
-//                
-//                root.activate('JooseJsOrg.Layout.Site').slot('center').activate('JooseJsOrg.Picture', {
-//                    id : params.id
-//                })
-//            }
-//        }
-//        
-////        /picture/10/highlight/11

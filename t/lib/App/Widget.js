@@ -26,10 +26,10 @@ Class('App.Widget', {
         
         
         onClick : function () {
-            this.router.dispatch('all-pictures', {
+            this.dispatch('all-pictures', {
                 fromDate : '01.10.10',
                 toDate : '11.11.12'
-            })
+            }).NOW()
         },
         
         
