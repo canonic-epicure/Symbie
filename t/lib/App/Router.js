@@ -67,16 +67,6 @@ Class('App.Router', {
             via : function (route) {
                 route.forward('home')
             }
-        },
-        
-        
-        defaultRoute : {
-            
-            mapTo : '/*',
-                
-            via : function (route) {
-                throw "Route [" + route.path + "] not found" 
-            }
         }
         
     }
