@@ -75,11 +75,11 @@ Class('App.Router', {
             mapTo : '/*',
                 
             via : function (route) {
-                route.activate('App.Layout.FullScreen').activate('App.Widget.NotFound')
+                throw "Route [" + route.path + "] not found" 
             }
         }
         
     }
-    //eof actions
+    //eof routes
        
 })
