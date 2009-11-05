@@ -1,16 +1,16 @@
 StartTest(function(t) {
 	
-    t.plan(1)
+    t.plan(2)
     
     var async1 = t.beginAsync()
     
-    use('App.Widget', function () {
+    use('App.Widget.Sample', function () {
         //==================================================================================================================================================================================
         t.diag("Sanity")
         
-        t.ok(App.Widget, "App.Widget is here")
+        t.ok(App.Widget.Sample, "App.Widget.Sample is here")
         
-        t.ok(App.Widget.meta.hasAttribute('pkField') && App.Widget.meta.getAttribute('pkField').required, "App.Widget has a required 'pkField' attribute")
+        t.ok(App.Widget.Sample.meta.hasAttribute('pkField') && App.Widget.Sample.meta.getAttribute('pkField').required, "App.Widget.Sample has a required 'pkField' attribute")
         
 //        //==================================================================================================================================================================================
 //        t.diag("Widget class creation")
