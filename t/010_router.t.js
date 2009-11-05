@@ -26,7 +26,6 @@ StartTest(function(t) {
             
             routes : {
                 
-                
                 home : {
                     mapTo : '/home',
                     
