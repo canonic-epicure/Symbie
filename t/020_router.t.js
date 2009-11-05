@@ -11,6 +11,8 @@ StartTest(function(t) {
         
         t.ok(App.Router, "App.Router is here")
         
+        t.ok(App.Router.meta.hasRoute('default'), "'default' route was composed from 'Symbie.Router.Default'")
+        
         
         t.endAsync(async1)
     })
