@@ -1,6 +1,6 @@
-Class('App.Root', {
+Class('App.Widget.Root', {
     
-    isa : 'Ext.Viewport',
+    isa : Ext.Viewport,
     
     does : 'Symbie.Widget.Root',
     

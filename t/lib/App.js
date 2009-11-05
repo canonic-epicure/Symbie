@@ -4,8 +4,11 @@ Class('App', {
     
         isa : 'Symbie.Application',
         
-        use : 'App.Widget.Root',
-    
+        use : [ 'App.Widget.Root' ],
+        
+        has : {
+            id      : 'App'
+        },
         
         methods : {
             

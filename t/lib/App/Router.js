@@ -36,8 +36,11 @@ Class('App.Router', {
         
         
         picture : {
+            mapTo : '/pictures/:id',
             
-            mapTo : '/picture/:id',
+            where : {
+                id    : /\d+/
+            },
             
             via : function (route) {
                 var params  = route.getParams()
@@ -50,8 +53,27 @@ Class('App.Router', {
         },
         
         
-        wiki : {
+        editWiki : {
+            mapTo : '/wiki/edit',
             
+            via : function (route) {
+                var path = route.getPath()
+            }
+        
+        },
+        
+        
+        wikiPage : {
+            mapTo : '/wiki/:page',
+            
+            via : function (route) {
+                var path = route.getPath()
+            }
+        
+        },
+        
+        
+        wiki : {
             mapTo : '/wiki/*',
             
             via : function (route) {
