@@ -1,9 +1,6 @@
-ExtClass('App.Home', {
+Class('App.Home', {
     
-    isa : Ext.Container,
-    
-    does : [ 'Symbie.Widget' ],
-
+    isa : 'Symbie.Widget.Container',
     
     after : {
         

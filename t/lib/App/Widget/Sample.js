@@ -1,10 +1,8 @@
-Class('App.Widget', {
+Class('App.Widget.Sample', {
     
-    xtype : 'app-widget',
+    xtype : 'app-widget-sample',
     
-    isa : Ext.Container,
-    
-    does : [ 'Symbie.Widget' ],
+    isa : 'Symbie.Widget.Container',
     
     
     id : {
