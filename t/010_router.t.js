@@ -15,6 +15,10 @@ StartTest(function(t) {
         t.ok(Symbie.Router.meta.meta.does(Symbie.Meta.Router), "'Symbie.Router' has correct meta")
         
         
+        //==================================================================================================================================================================================
+        t.diag("Class creation")
+        
+        
         Class('App.Router', {
             
             isa : 'Symbie.Router',
@@ -99,6 +103,26 @@ StartTest(function(t) {
         t.ok(App.Router.meta.hasRoute('home'), "Route 'home' was defined via 'routes' builder")
         t.ok(App.Router.meta.hasRoute('index'), "Route 'index' was defined via 'routes' builder")
         
+        
+        //==================================================================================================================================================================================
+        t.diag("Instantiation")
+        
+        var router = new App.Router({
+            root : {}
+        })
+        
+        t.ok(router, "'App.Router' was successfully instantiated")
+        
+        
+        //==================================================================================================================================================================================
+        t.diag("Dispatching #1")
+        
+        var async2 = t.beginAsync()
+        
+        router.dispatch('/home').then(function () {
+            
+            t.endAsync(async2)
+        }).now()
         
         t.endAsync(async1)
     })
