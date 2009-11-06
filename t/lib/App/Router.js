@@ -42,6 +42,8 @@ Class('App.Router', {
                 id    : /\d+/
             },
             
+            routeClass : 'App.Custom.Route',
+            
             via : function (route) {
                 var params  = route.getParams()
                 var root    = route.getRoot()

@@ -59,6 +59,18 @@ StartTest(function(t) {
                 },
                 
                 
+                editPicture : {
+                    mapTo : '/pictures/:id/edit',
+                    
+                    where : {
+                        id    : /\d+/
+                    },
+                    
+                    via : function (route) {
+                    }
+                },
+                
+                
                 editWiki : {
                     mapTo : '/wiki/edit',
                     
