@@ -111,6 +111,10 @@ StartTest(function(t) {
         
         t.ok(App.Router.meta.hasRoute('default'), "'default' route was inheried from 'Symbie.Router' (and composed from 'Symbie.Router.Default')")
         
+        var defaultRoute = App.Router.meta.getRoute('default')
+        
+        t.ok(defaultRoute instanceof Symbie.Meta.Route, "'default' route isa Symbie.Meta.Route")
+        
         t.ok(App.Router.meta.hasRoute('home'), "Route 'home' was defined via 'routes' builder")
         t.ok(App.Router.meta.hasRoute('index'), "Route 'index' was defined via 'routes' builder")
         
@@ -123,17 +127,27 @@ StartTest(function(t) {
         })
         
         t.ok(router, "'App.Router' was successfully instantiated")
+
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route")
+        
+        
+        var route = router.findRoute('/home')
+        
+        t.ok(route, "Route for '/home' was found")
+        t.ok(route == App.Route.meta.getRoute('home'), ".. and its correct")
         
         
         //==================================================================================================================================================================================
         t.diag("Dispatching #1")
         
-        var async2 = t.beginAsync()
-        
-        router.dispatch('/home').then(function () {
-            
-            t.endAsync(async2)
-        }).now()
+//        var async2 = t.beginAsync()
+//        
+//        router.dispatch('/home').then(function () {
+//            
+//            t.endAsync(async2)
+//        }).now()
         
         t.endAsync(async1)
     })
