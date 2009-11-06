@@ -130,13 +130,23 @@ StartTest(function(t) {
 
         
         //==================================================================================================================================================================================
-        t.diag("Finding route")
+        t.diag("Finding route #1")
+        
+        var route1 = router.createContext('/home')
+        
+        t.ok(route1, "Route for '/home' was found")
+        t.ok(route1.route == App.Router.meta.getRoute('home'), ".. and its correct")
         
         
-        var route = router.findRoute('/home')
+        //==================================================================================================================================================================================
+        t.diag("Finding route #2")
         
-        t.ok(route, "Route for '/home' was found")
-        t.ok(route == App.Route.meta.getRoute('home'), ".. and its correct")
+        
+        var route2 = router.createContext('/wiki/foo/bar')
+        
+        t.ok(route2, "Route for '/home' was found")
+        t.ok(route2.route == App.Router.meta.getRoute('wiki'), ".. and its correct")
+        t.ok(route2.path.length == 2, ".. route contains 2 path elements")
         
         
         //==================================================================================================================================================================================
