@@ -82,6 +82,10 @@ StartTest(function(t) {
                 wikiPage : {
                     mapTo : '/wiki/:page',
                     
+                    where : {
+                        page    : /\d+/
+                    },
+                    
                     via : function (route) {
                     }
                 },
@@ -132,21 +136,33 @@ StartTest(function(t) {
         //==================================================================================================================================================================================
         t.diag("Finding matching route #1")
         
-        var match1 = router.findMatch('/home')
+        var match = router.findMatch('/home')
         
-        t.ok(match1, "Match for '/home' was found")
-        t.ok(match1.route == App.Router.meta.getRoute('home'), ".. and it has a correct route")
+        t.ok(match, "Match for '/home' was found")
+        t.ok(match.route == App.Router.meta.getRoute('home'), ".. and it has a correct route")
         
         
         //==================================================================================================================================================================================
         t.diag("Finding route #2")
         
-        var match2 = router.findMatch('/wiki/foo/bar')
+        match = router.findMatch('/wiki/foo/bar')
         
-        t.ok(match2, "Match for '/wiki/foo/bar' was found")
-        t.ok(match2.route == App.Router.meta.getRoute('wiki'), ".. and it has a correct route")
-        t.ok(match2.path.length == 2, ".. match contains 2 path elements")
-        t.ok(match2.path[0] == 'foo' && match2.path[0] == 'bar', ".. match contains 2 correct path elements")
+        t.ok(match, "Match for '/wiki/foo/bar' was found")
+        t.ok(match.route == App.Router.meta.getRoute('wiki'), ".. and it has a correct route")
+        t.ok(match.path.length == 2, ".. match contains 2 path elements")
+        t.ok(match.path[0] == 'foo' && match.path[1] == 'bar', ".. match contains 2 correct path elements")
+        
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route #2")
+        
+        match = router.findMatch('/wiki/foo/bar')
+        
+        t.ok(match, "Match for '/wiki/foo/bar' was found")
+        t.ok(match.route == App.Router.meta.getRoute('wiki'), ".. and it has a correct route")
+        t.ok(match.path.length == 2, ".. match contains 2 path elements")
+        t.ok(match.path[0] == 'foo' && match.path[1] == 'bar', ".. match contains 2 correct path elements")
+        
         
         
         //==================================================================================================================================================================================
