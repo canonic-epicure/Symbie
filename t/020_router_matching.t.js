@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(33)
+    t.plan(34)
     
     var async1 = t.beginAsync()
     
@@ -170,6 +170,16 @@ StartTest(function(t) {
         var toDate = match.parameters.toDate
         
         t.ok(toDate == '56-78-5678', ".. 'toDate' parameter was the only match and was passed directly")
+
+        
+        //==================================================================================================================================================================================
+        t.diag("Missing route")
+        
+        t.throws_ok(function () {
+            
+            match = router.findMatch('')
+            
+        }, "Can't find route for the path", 'Missing route was detected')
         
         
         t.endAsync(async1)
