@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(4)
+    t.plan(7)
     
     var async1 = t.beginAsync()
     
@@ -126,9 +126,11 @@ StartTest(function(t) {
         
         var async2 = t.beginAsync()
         
-        router.dispatch('/asd/asd').CATCH(function () {
+        router.dispatch('/foo/bar').CATCH(function (e) {
             
             t.pass("'CATCH' reached after wrong dispatch")
+            
+            t.like(e + '', 'mapped to abstract route', "Exception value is correct")
             
             t.endAsync(async2)
             
