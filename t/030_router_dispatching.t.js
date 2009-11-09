@@ -122,17 +122,33 @@ StartTest(function(t) {
 
         
         //==================================================================================================================================================================================
-        t.diag("Dispatching #1")
+        t.diag("Dispatching with error")
         
         var async2 = t.beginAsync()
+        
+        router.dispatch('/asd/asd').CATCH(function () {
+            
+            t.pass("'CATCH' reached after wrong dispatch")
+            
+            t.endAsync(async2)
+            
+        }).now()
+        
+        
+        //==================================================================================================================================================================================
+        t.diag("Dispatching #1")
+        
+        var async3 = t.beginAsync()
         
         router.dispatch('/home').then(function () {
             
             t.pass("'then' after '/home' route was reached")
             
-            t.endAsync(async2)
+            t.endAsync(async3)
             
         }).now()
+        
+        
         
         t.endAsync(async1)
     })
