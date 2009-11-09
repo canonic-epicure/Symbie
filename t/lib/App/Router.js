@@ -9,8 +9,8 @@ Class('App.Router', {
         home : {
             mapTo : '/home',
             
-            via : function (route) {
-                route.activate('App.Layout.Site').slot('center').activate('App.Home')
+            via : function (context) {
+                context.activate('App.Layout.Site').slot('center').activate('App.Home')
             } 
         },
         
@@ -23,9 +23,9 @@ Class('App.Router', {
                 toDate      : /.*/
             },
             
-            via : function (route) {
-                var params  = route.getParams()
-                var root    = route.getRoot()
+            via : function (context) {
+                var params  = context.getParams()
+                var root    = context.getRoot()
                 
                 root.activate('JooseJsOrg.Layout.Site').slot('center').activate('JooseJsOrg.Pictures.All', {
                     fromDate : params.fromDate,
@@ -44,9 +44,9 @@ Class('App.Router', {
             
             routeClass : 'App.Custom.Route',
             
-            via : function (route) {
-                var params  = route.getParams()
-                var root    = route.getRoot()
+            via : function (context) {
+                var params  = context.getParams()
+                var root    = context.getRoot()
                 
                 root.activate('JooseJsOrg.Layout.Site').slot('center').activate('JooseJsOrg.Picture', {
                     id : params.id
@@ -58,8 +58,8 @@ Class('App.Router', {
         editWiki : {
             mapTo : '/wiki/edit',
             
-            via : function (route) {
-                var path = route.getPath()
+            via : function (context) {
+                var path = context.getPath()
             }
         
         },
@@ -68,8 +68,8 @@ Class('App.Router', {
         wikiPage : {
             mapTo : '/wiki/:page',
             
-            via : function (route) {
-                var path = route.getPath()
+            via : function (context) {
+                var path = context.getPath()
             }
         
         },
@@ -78,8 +78,8 @@ Class('App.Router', {
         wiki : {
             mapTo : '/wiki/*',
             
-            via : function (route) {
-                var path = route.getPath()
+            via : function (context) {
+                var path = context.getPath()
             }
         
         },
@@ -88,8 +88,8 @@ Class('App.Router', {
         index : {
             mapTo : '/',
             
-            via : function (route) {
-                route.forward('home')
+            via : function (context) {
+                context.forward('home')
             }
         }
         

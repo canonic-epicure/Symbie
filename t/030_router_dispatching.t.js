@@ -25,8 +25,8 @@ StartTest(function(t) {
                 home : {
                     mapTo : '/home',
                     
-                    via : function (route) {
-                        t.pass("'home' route was reached")
+                    via : function (context) {
+                        t.pass("'home' context was reached")
                     } 
                 },
                 
@@ -39,7 +39,7 @@ StartTest(function(t) {
                         toDate      : /.*/
                     },
                     
-                    via : function (route) {
+                    via : function (context) {
                     }
                 },
                 
@@ -51,7 +51,7 @@ StartTest(function(t) {
                         id    : /\d+/
                     },
                     
-                    via : function (route) {
+                    via : function (context) {
                     }
                 },
                 
@@ -63,7 +63,7 @@ StartTest(function(t) {
                         id    : /\d+/
                     },
                     
-                    via : function (route) {
+                    via : function (context) {
                     }
                 },
                 
@@ -71,7 +71,7 @@ StartTest(function(t) {
                 editWiki : {
                     mapTo : '/wiki/edit',
                     
-                    via : function (route) {
+                    via : function (context) {
                     }
                 },
                 
@@ -83,7 +83,7 @@ StartTest(function(t) {
                         page    : /\d+/
                     },
                     
-                    via : function (route) {
+                    via : function (context) {
                     }
                 },
                 
@@ -91,7 +91,7 @@ StartTest(function(t) {
                 wiki : {
                     mapTo : '/wiki/*',
                     
-                    via : function (route) {
+                    via : function (context) {
                     }
                 },
                 
@@ -99,8 +99,8 @@ StartTest(function(t) {
                 index : {
                     mapTo : '/',
                     
-                    via : function (route) {
-                        route.forward('home')
+                    via : function (context) {
+                        context.forward('home')
                     }
                 }
                 
@@ -127,6 +127,8 @@ StartTest(function(t) {
         var async2 = t.beginAsync()
         
         router.dispatch('/home').then(function () {
+            
+            t.pass("'then' after '/home' route was reached")
             
             t.endAsync(async2)
             
