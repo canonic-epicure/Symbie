@@ -12,6 +12,7 @@ Class('App.Widget.Sample', {
     
     has : {
         slots       : true,
+        
         attr1       : 'value1'
     },
 
