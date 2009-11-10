@@ -14,7 +14,7 @@ Class('App', {
             
             setup : function () {
                 this.root = new App.Widget.Root({
-                    ownerWidget : this
+                    owner : this
                 })
             }
         }
