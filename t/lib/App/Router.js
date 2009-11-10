@@ -27,7 +27,16 @@ Class('App.Router', {
                 var params  = context.getParams()
                 var root    = context.getRoot()
                 
-                root.activate('JooseJsOrg.Layout.Site').slot('center').activate('JooseJsOrg.Pictures.All', {
+                t.ok(root == this)
+                
+                var siteLayout = this.activate('JooseJsOrg.Layout.Site')
+                
+                siteLayout.slot('center').activate('JooseJsOrg.Pictures.All', {
+                    fromDate : params.fromDate,
+                    toDate : params.toDate
+                })
+                
+                siteLayout.slot('footer').activate('JooseJsOrg.Pictures.Footer', {
                     fromDate : params.fromDate,
                     toDate : params.toDate
                 })
