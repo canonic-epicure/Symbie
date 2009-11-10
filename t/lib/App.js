@@ -7,13 +7,15 @@ Class('App', {
         use : [ 'App.Widget.Root' ],
         
         has : {
-            id      : 'App'
+            ID      : 'App'
         },
         
         methods : {
             
             setup : function () {
-                this.root = new App.Widget.Root()
+                this.root = new App.Widget.Root({
+                    ownerWidget : this
+                })
             }
         }
     }
