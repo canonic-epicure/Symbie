@@ -1,16 +1,12 @@
 Class('App.Layout.Site', {
     
-    isa : Ext.Container,
-    
-    does : [ 'Symbie.Widget' ],
-    
+    isa : 'Symbie.Widget.Container',
     
     before : {
         
         initComponent : function () {
+            
             Ext.apply(this, {
-                
-                
                 items : [
                     {
                         xtype : 'container',

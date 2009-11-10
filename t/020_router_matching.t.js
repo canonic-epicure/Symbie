@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(34)
+    t.plan(38)
     
     var async1 = t.beginAsync()
     
@@ -109,7 +109,7 @@ StartTest(function(t) {
 
         
         //==================================================================================================================================================================================
-        t.diag("Finding matching route #1")
+        t.diag("Finding route for '/home'")
         
         var match = router.findMatch('/home')
         
@@ -119,7 +119,7 @@ StartTest(function(t) {
         t.ok(Joose.O.isEmpty(match.parameters), ".. match contains no parameters")
         
         //==================================================================================================================================================================================
-        t.diag("Finding route #2")
+        t.diag("Finding route for '/wiki/*'")
         
         match = router.findMatch('/wiki/foo/bar')
         
@@ -131,7 +131,7 @@ StartTest(function(t) {
         
         
         //==================================================================================================================================================================================
-        t.diag("Finding route #3")
+        t.diag("Finding route for '/wiki/edit'")
         
         match = router.findMatch('/wiki/edit')
         
@@ -142,7 +142,7 @@ StartTest(function(t) {
 
         
         //==================================================================================================================================================================================
-        t.diag("Finding route #4")
+        t.diag("Finding route for '/wiki/:page'")
         
         match = router.findMatch('/wiki/123')
         
@@ -153,7 +153,7 @@ StartTest(function(t) {
 
         
         //==================================================================================================================================================================================
-        t.diag("Finding route #5")
+        t.diag("Finding route for '/pictures/all/:fromDate/:toDate'")
         
         match = router.findMatch('/pictures/all/12-34-1234/56-78-5678')
         
@@ -171,6 +171,17 @@ StartTest(function(t) {
         
         t.ok(toDate == '56-78-5678', ".. 'toDate' parameter was the only match and was passed directly")
 
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/pictures/:id/edit'")
+        
+        match = router.findMatch('/pictures/123/edit')
+        
+        t.ok(match, "Match for '/pictures/123/edit' was found")
+        t.ok(match.route == App.Router.meta.getRoute('editPicture'), ".. and it has a correct route")
+        t.ok(match.path.length == 0, ".. match contains 0 path elements")
+        t.ok(match.parameters.id == '123', ".. match contains correct parameter")
+        
         
         //==================================================================================================================================================================================
         t.diag("Missing route")

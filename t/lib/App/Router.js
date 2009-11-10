@@ -10,7 +10,7 @@ Class('App.Router', {
             mapTo : '/home',
             
             via : function (context) {
-                context.activate('App.Layout.Site').slot('center').activate('App.Home')
+                context.findOrCreate('App.Layout.Site').slot('center').findOrCreate('App.Home')
             } 
         },
         
@@ -29,14 +29,14 @@ Class('App.Router', {
                 
                 t.ok(root == this)
                 
-                var siteLayout = this.activate('JooseJsOrg.Layout.Site')
+                var siteLayout = this.findOrCreate('JooseJsOrg.Layout.Site')
                 
-                siteLayout.slot('center').activate('JooseJsOrg.Pictures.All', {
+                siteLayout.slot('center').findOrCreate('JooseJsOrg.Pictures.All', {
                     fromDate : params.fromDate,
                     toDate : params.toDate
                 })
                 
-                siteLayout.slot('footer').activate('JooseJsOrg.Pictures.Footer', {
+                siteLayout.slot('footer').findOrCreate('JooseJsOrg.Pictures.Footer', {
                     fromDate : params.fromDate,
                     toDate : params.toDate
                 })
@@ -57,7 +57,7 @@ Class('App.Router', {
                 var params  = context.getParams()
                 var root    = context.getRoot()
                 
-                root.activate('JooseJsOrg.Layout.Site').slot('center').activate('JooseJsOrg.Picture', {
+                root.findOrCreate('JooseJsOrg.Layout.Site').slot('center').findOrCreate('JooseJsOrg.Picture', {
                     id : params.id
                 })
             }

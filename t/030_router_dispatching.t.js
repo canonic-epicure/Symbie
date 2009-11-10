@@ -115,7 +115,7 @@ StartTest(function(t) {
         t.diag("Instantiation")
         
         var router = new App.Router({
-            root : {}
+            root : new Ext.Container()
         })
         
         t.ok(router, "'App.Router' was successfully instantiated")
@@ -126,7 +126,11 @@ StartTest(function(t) {
         
         var async2 = t.beginAsync()
         
-        router.dispatch('/foo/bar').CATCH(function (e) {
+        router.dispatch('/foo/bar').then(function () {
+            
+            t.fail("'THEN' reached after exception")
+        
+        }).except(function (e) {
             
             t.pass("'CATCH' reached after wrong dispatch")
             
