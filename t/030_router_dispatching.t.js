@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(7)
+    t.plan(15)
     
     var async1 = t.beginAsync()
     
@@ -40,6 +40,7 @@ StartTest(function(t) {
                     },
                     
                     via : function (context) {
+                        t.pass("'allPictures' context was reached")
                     }
                 },
                 
@@ -122,7 +123,7 @@ StartTest(function(t) {
 
         
         //==================================================================================================================================================================================
-        t.diag("Dispatching with error")
+        t.diag("Dispatching with nested error")
         
         var async2 = t.beginAsync()
         
@@ -154,6 +155,53 @@ StartTest(function(t) {
             
         }).now()
         
+        
+        //==================================================================================================================================================================================
+        t.diag("Dispatching with the following error")
+        
+        var async4 = t.beginAsync()
+        
+        router.dispatch('/home').then(function () {
+            
+            t.pass("'THEN' reached after exception")
+            
+            throw "error"
+        
+        }).except(function (e) {
+            
+            t.pass("'CATCH' reached after throwed exception")
+            
+            t.ok(e == 'error', "Exception value is correct")
+            
+            this.CONTINUE()
+            
+        }).ensure(function () {
+            
+            t.pass("'FINALLY' was reached after throwed exception")
+            
+            t.endAsync(async4)
+            
+        }).now()
+        
+        
+        //==================================================================================================================================================================================
+        t.diag("Dispatching #2")
+        
+        var async5 = t.beginAsync()
+        
+        router.dispatch('/pictures/all/12-34-1234/56-78-5678').then(function () {
+            
+            t.pass("'then' after '/pictures/all/12-34-1234/56-78-5678' route was reached")
+            
+            this.CONTINUE()
+            
+        }).ensure(function () {
+            
+            t.pass("'FINALLY' was reached without exceptions")
+            
+            t.endAsync(async5)
+            
+        }).now()
         
         
         t.endAsync(async1)
