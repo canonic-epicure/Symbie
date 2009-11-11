@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(31)
+    t.plan(57)
     
     var async0 = t.beginAsync()
     
@@ -84,6 +84,8 @@ StartTest(function(t) {
             t.ok(header && header instanceof App.Widget.Header, "Site layout have 'header' widget where expected")
             t.ok(!header.items || !header.items.getCount(), "Header have no child elements")
             t.ok(header.rendered, "Header was rendered")
+            t.ok(header.ID, "Header has an ID")
+            t.ok(header.getEl().dom, "Header has a DOM element")
             
 
             //App.Widget.Home
@@ -93,6 +95,8 @@ StartTest(function(t) {
             t.ok(home && home instanceof App.Widget.Home, "Site layout have 'home' widget where expected")
             t.ok(!home.items || !home.items.getCount(), "Home have no child elements")
             t.ok(home.rendered, "Home was rendered")
+            t.ok(home.ID, "Home has an ID")
+            t.ok(home.getEl().dom, "Home has a DOM element")
             
             
             //App.Widget.Footer
@@ -102,9 +106,69 @@ StartTest(function(t) {
             t.ok(footer && footer instanceof App.Widget.Footer, "Site layout have 'footer' widget where expected")
             t.ok(!footer.items || !footer.items.getCount(), "Footer have no child elements")
             t.ok(footer.rendered, "Footer was rendered")
+            t.ok(footer.ID, "Footer has an ID")
+            t.ok(footer.getEl().dom, "Footer has a DOM element")
+            
+            //==================================================================================================================================================================================
+            t.diag("Redispatch")
             
             
-            t.endAsync(async1)
+            root.dispatch('/').next(function (context1) {
+                
+                t.ok(context1 != context, 'Different context was instantiated')
+                
+                //==================================================================================================================================================================================
+                t.diag("Ext.Container hierarchy after redispacth - no additional elements should appear")
+                
+                
+                //App.Site.Layout
+
+                t.ok(root.items.getCount() == 1, "Items of 'root' have a single child container")
+                
+                var siteLayout1 = root.items.itemAt(0)
+                
+                t.ok(siteLayout1 && siteLayout1 instanceof App.Layout.Site, ".. which is a site layout")
+                t.ok(siteLayout1.rendered, ".. and which was rendered")
+                
+                
+                t.ok(siteLayout1.items.getCount() == 3, "Items of 'siteLayout1' have a 3 child containers")
+                
+                
+                //App.Widget.Header
+                
+                var header1 = siteLayout1.slots.header.items.itemAt(0)
+                
+                t.ok(header1 && header1 instanceof App.Widget.Header, "Site layout have 'header1' widget where expected")
+                t.ok(!header1.items || !header1.items.getCount(), "Header have no child elements")
+                
+                t.ok(header1 == header, "Header is still the same object")
+                t.ok(header1.getEl().dom == header.getEl().dom, "Header still has the same DOM element")
+                
+    
+                //App.Widget.Home
+                
+                var home1 = siteLayout1.slots.center.items.itemAt(0)
+                
+                t.ok(home1 && home1 instanceof App.Widget.Home, "Site layout have 'home1' widget where expected")
+                t.ok(!home1.items || !home1.items.getCount(), "Home have no child elements")
+                
+                t.ok(home1 == home, "Home is still the same object")
+                t.ok(home1.getEl().dom == home.getEl().dom, "Home still has the same DOM element")
+                
+                
+                //App.Widget.Footer
+                
+                var footer1 = siteLayout1.slots.footer.items.itemAt(0)
+                
+                t.ok(footer1 && footer1 instanceof App.Widget.Footer, "Site layout have 'footer1' widget where expected")
+                t.ok(!footer1.items || !footer1.items.getCount(), "Footer have no child elements")
+                
+                t.ok(footer1 == footer, "Footer is still the same object")
+                t.ok(footer1.getEl().dom == footer.getEl().dom, "Footer still has the same DOM element")
+                
+                
+                t.endAsync(async1)
+            })
         })
         
         t.endAsync(async0)
