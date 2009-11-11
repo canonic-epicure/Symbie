@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(2)
+    t.plan(7)
     
     var async1 = t.beginAsync()
     
@@ -68,7 +68,6 @@ StartTest(function(t) {
         
         t.ok(sample, "'App.Widget.Sample' was successfully instantiated")
 
-        
         
         //==================================================================================================================================================================================
         t.diag("Checking ID during instantiation")
