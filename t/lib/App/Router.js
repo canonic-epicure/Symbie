@@ -66,23 +66,22 @@ Class('App.Router', {
                 
                 layout.slot('center').mark('center')
                 
-                layout.slotAndMark('footer').findOrCreate('App.Widget.Footer', {
-                    footerPk : 1
-                })
+                layout.slotAndMark('footer')
             }
         },
         
         
-        sample2 : {
-            mapTo : '/sample2',
+        home2 : {
+            mapTo : '/home2',
             
             via : function (context, root) {
                 root.collectFrom('mainLayout')
                 
-                context.getMark('center').findOrCreate('App.Widget.Sample', {
-                    pkField : 1
-                })
+                context.getMark('center').findOrCreate('App.Widget.Home')
                 
+                context.getMark('footer').findOrCreate('App.Widget.Footer', {
+                    footerPk : 1
+                })
             }
         }
         
