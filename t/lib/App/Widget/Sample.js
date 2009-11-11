@@ -15,25 +15,22 @@ Class('App.Widget.Sample', {
         
         attr1       : 'value1'
     },
+    
+    
+    methods : {
+        
+        onClick : function () {
+            this.dispatch('/home').now()
+        }
+    },
 
     
     after : {
         
-        initComponent : function () {
-            this.on('click', this.onClick, this)
-        },
-        
-        
-        onClick : function () {
-            this.dispatch('all-pictures', {
-                fromDate : '01.10.10',
-                toDate : '11.11.12'
-            }).NOW()
-        },
-        
-        
         onRender : function () {
-            this.el.update('App.Widget')
+            this.el.update('App.Widget.Sample')
+            
+            this.el.on('click', this.onClick, this)
         }
         
     }

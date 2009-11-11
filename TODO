@@ -3,8 +3,7 @@ TASKS
 
 - inheritance of internal details for routes (just MutableCopy or each route as class)?
 
-
-
+- checks for routes ambiguity
 
 
 
