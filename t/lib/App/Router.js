@@ -5,7 +5,6 @@ Class('App.Router', {
     
     routes : {
         
-        
         home : {
             mapTo : '/home',
             
@@ -53,6 +52,37 @@ Class('App.Router', {
                 layout.slot('footer').findOrCreate('App.Widget.Footer', {
                     footerPk : 1
                 })
+            }
+        },
+        
+        
+        mainLayout : {
+            via : function (context, root) {
+                var layout = root.findOrCreate('App.Layout.Site')
+                
+                layout.slotAndMark('header').findOrCreate('App.Widget.Header', {
+                    headerPk : 1
+                })
+                
+                layout.slot('center').mark('center')
+                
+                layout.slotAndMark('footer').findOrCreate('App.Widget.Footer', {
+                    footerPk : 1
+                })
+            }
+        },
+        
+        
+        sample2 : {
+            mapTo : '/sample2',
+            
+            via : function (context, root) {
+                root.collectFrom('mainLayout')
+                
+                context.getMark('center').findOrCreate('App.Widget.Sample', {
+                    pkField : 1
+                })
+                
             }
         }
         

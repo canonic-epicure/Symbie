@@ -34,7 +34,7 @@ StartTest(function(t) {
             //==================================================================================================================================================================================
             t.diag("Steps tree structure")
             
-            t.pass("'next' reached after dispatch from 'onReady'")
+            t.pass("'next' reached after dispatch")
             
             t.ok(context.stepsRoot.childSteps.length == 1, "Root step in '/' activation context has single child step - layout")
             
