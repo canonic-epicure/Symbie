@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(15)
+    t.plan(16)
     
     var async1 = t.beginAsync()
     
@@ -147,9 +147,11 @@ StartTest(function(t) {
         
         var async3 = t.beginAsync()
         
-        router.dispatch('/home').then(function () {
+        router.dispatch('/home').then(function (context) {
             
             t.pass("'then' after '/home' route was reached")
+            
+            t.ok(context instanceof Symbie.Context, "'then' received with the instance of context created")
             
             t.endAsync(async3)
             
