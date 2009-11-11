@@ -16,7 +16,7 @@ Class('App.Layout.Site', {
                         xtype : 'container',
                         slot : 'header',
                         
-                        height : 300
+                        height : 100
                     },
                     
                     {
@@ -25,14 +25,14 @@ Class('App.Layout.Site', {
                         
                         layout : 'card',
                         
-                        height : 600
+                        height : 300
                     },
                     
                     {
                         xtype : 'container',
                         slot : 'footer',
                         
-                        height : 300
+                        height : 100
                     }
                 ]
             })
