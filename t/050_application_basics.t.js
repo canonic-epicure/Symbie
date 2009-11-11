@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(57)
+    t.plan(58)
     
     var async0 = t.beginAsync()
     
@@ -98,6 +98,7 @@ StartTest(function(t) {
             t.ok(home.ID, "Home has an ID")
             t.ok(home.getEl().dom, "Home has a DOM element")
             
+            t.ok(siteLayout.slots.center.getLayout().activeItem == home, "Active item in 'center' slot is Home widget")
             
             //App.Widget.Footer
             
