@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(38)
+    t.plan(42)
     
     var async1 = t.beginAsync()
     
@@ -181,6 +181,17 @@ StartTest(function(t) {
         t.ok(match.route == App.Router.meta.getRoute('editPicture'), ".. and it has a correct route")
         t.ok(match.path.length == 0, ".. match contains 0 path elements")
         t.ok(match.parameters.id == '123', ".. match contains correct parameter")
+        
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/'")
+        
+        match = router.findMatch('/')
+        
+        t.ok(match, "Match for '/' was found")
+        t.ok(match.route == App.Router.meta.getRoute('index'), ".. and it has a correct route")
+        t.ok(match.path.length == 0, ".. match contains 0 path elements")
+        t.ok(Joose.O.isEmpty(match.parameters), ".. match contains no parameters")
         
         
         //==================================================================================================================================================================================
