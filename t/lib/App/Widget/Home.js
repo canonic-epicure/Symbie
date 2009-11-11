@@ -1,4 +1,4 @@
-Class('App.Home', {
+Class('App.Widget.Home', {
     
     isa : 'Symbie.Widget.Container',
     

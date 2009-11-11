@@ -2,6 +2,10 @@ Class('App.Layout.Site', {
     
     isa : 'Symbie.Widget.Container',
     
+    has : {
+        slots       : true
+    },
+    
     before : {
         
         initComponent : function () {
@@ -18,6 +22,8 @@ Class('App.Layout.Site', {
                     {
                         xtype : 'container',
                         slot : 'center',
+                        
+                        layout : 'card',
                         
                         height : 600
                     },

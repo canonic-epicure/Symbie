@@ -9,10 +9,9 @@ Class('App.Router', {
         home : {
             mapTo : '/home',
             
-            via : function (context) {
-                var root = context.getRoot() //root == this, btw
+            via : function (context, root) {
+                //root == this, btw
                 
-
                 var layout = root.findOrCreate('App.Layout.Site')
                 
                 layout.slot('header').findOrCreate('App.Widget.Header', {
@@ -31,9 +30,8 @@ Class('App.Router', {
         index : {
             mapTo : '/',
             
-            via : function (context) {
-                
-                context.forward('home')
+            via : function (context, root) {
+                root.collectFrom('home')
             }
         }
         
