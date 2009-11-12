@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(36)
+    t.plan(37)
     
     var async0 = t.beginAsync()
     
@@ -63,6 +63,8 @@ StartTest(function(t) {
             t.diag("Steps tree structure built with marks")
             
             root.dispatch('/home2').next(function (context2) {
+                
+                t.ok(context2 != context, 'Different context was instantiated')
                 
                 //==================================================================================================================================================================================
                 t.diag("Steps tree structure")

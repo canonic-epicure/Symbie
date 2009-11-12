@@ -101,7 +101,6 @@ StartTest(function(t) {
                     mapTo : '/',
                     
                     via : function (context) {
-                        context.forward('home')
                     }
                 }
                 
