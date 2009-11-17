@@ -6,9 +6,12 @@ Class('App', {
         
         use : [ 'App.Widget.Root' ],
         
+        
         has : {
-            ID      : 'App'
+            ID                  : 'App'
+            
         },
+        
         
         methods : {
             

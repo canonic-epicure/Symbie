@@ -5,9 +5,9 @@ TASKS
 
 - checks for routes ambiguity
 
-- url for route instance  
+- url for route instance (reverse parsing)  
 
-
+- configuration parameteres for Application, which will specify traits/roles for key system components like router and context
 
 
 DONE
