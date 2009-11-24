@@ -15,7 +15,7 @@ Class('App', {
         
         methods : {
             
-            setup : function () {
+            seed : function () {
                 this.root = new App.Widget.Root({
                     owner : this
                 })
