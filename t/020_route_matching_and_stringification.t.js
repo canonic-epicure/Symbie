@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(42)
+    t.plan(49)
     
     var async1 = t.beginAsync()
     
@@ -118,6 +118,10 @@ StartTest(function(t) {
         t.ok(match.path.length == 0, ".. match contains 0 path elements")
         t.ok(Joose.O.isEmpty(match.parameters), ".. match contains no parameters")
         
+
+        t.ok(match.route.asString() == '/home', 'Route was stringified correctly')
+        
+        
         //==================================================================================================================================================================================
         t.diag("Finding route for '/wiki/*'")
         
@@ -130,6 +134,9 @@ StartTest(function(t) {
         t.ok(Joose.O.isEmpty(match.parameters), ".. match contains no parameters")
         
         
+        t.ok(match.route.asString() == '/wiki', 'Route was stringified correctly')
+        
+        
         //==================================================================================================================================================================================
         t.diag("Finding route for '/wiki/edit'")
         
@@ -139,6 +146,9 @@ StartTest(function(t) {
         t.ok(match.route == App.Router.meta.getRoute('editWiki'), ".. and it has a correct route")
         t.ok(match.path.length == 0, ".. match contains 0 path elements")
         t.ok(Joose.O.isEmpty(match.parameters), ".. match contains no parameters")
+        
+        
+        t.ok(match.route.asString({ path : 'edit' }) == '/wiki/edit', 'Route was stringified correctly')
 
         
         //==================================================================================================================================================================================
@@ -151,6 +161,8 @@ StartTest(function(t) {
         t.ok(match.path.length == 0, ".. match contains 0 path elements")
         t.ok(match.parameters.page == '123', ".. match contains correct parameters")
 
+        t.ok(match.route.asString({ page : 123 }) == '/wiki/123', 'Route was stringified correctly')
+        
         
         //==================================================================================================================================================================================
         t.diag("Finding route for '/pictures/all/:fromDate/:toDate'")
@@ -170,6 +182,9 @@ StartTest(function(t) {
         var toDate = match.parameters.toDate
         
         t.ok(toDate == '56-78-5678', ".. 'toDate' parameter was the only match and was passed directly")
+        
+        
+        t.ok(match.route.asString({ fromDate : '12-34-1234', toDate : '56-78-5678' }) == '/pictures/all/12-34-1234/56-78-5678', 'Route was stringified correctly')
 
         
         //==================================================================================================================================================================================
@@ -183,6 +198,9 @@ StartTest(function(t) {
         t.ok(match.parameters.id == '123', ".. match contains correct parameter")
         
         
+        t.ok(match.route.asString({ id : 123 }) == '/pictures/123/edit', 'Route was stringified correctly')
+        
+        
         //==================================================================================================================================================================================
         t.diag("Finding route for '/'")
         
@@ -192,6 +210,9 @@ StartTest(function(t) {
         t.ok(match.route == App.Router.meta.getRoute('index'), ".. and it has a correct route")
         t.ok(match.path.length == 0, ".. match contains 0 path elements")
         t.ok(Joose.O.isEmpty(match.parameters), ".. match contains no parameters")
+        
+        
+        t.ok(match.route.asString() == '/', 'Route was stringified correctly')
         
         
         //==================================================================================================================================================================================

@@ -28,6 +28,7 @@ StartTest(function(t) {
         t.ok(route.tokens[0].token == '', "The value of the root token is empty string")
         t.ok(route.tokens[1].token == 'home', "The value of the 2nd token is correct")
         
+
         //==================================================================================================================================================================================
         t.diag("Index route")
         
@@ -43,6 +44,7 @@ StartTest(function(t) {
         
         t.ok(index.tokens[0].token == '', "The value of the root token is empty string")
         t.ok(index.tokens[1].token == '', "The value of the 2nd token is empty string also")
+
         
         //==================================================================================================================================================================================
         t.diag("Route with parameter")
@@ -69,6 +71,7 @@ StartTest(function(t) {
         
         t.ok(param.tokens[4].token == ':toDate', "The value of the 5th token is correct")
         t.ok(param.tokens[4].regex.source == '(.*)', "The regex of the 5th has default value")
+        
         
         t.endAsync(async1)
     })

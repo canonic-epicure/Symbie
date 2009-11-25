@@ -1,16 +1,32 @@
 TASKS
 =====
 
-- inheritance of internal details for routes (just MutableCopy or each route as class)?
+Infrastructure
+--------------
 
-- checks for routes ambiguity
+- create Task/ package to speedup the loading
 
-- url for route instance (reverse parsing)  
+
+
+Configuration
+-------------
 
 - configuration parameteres for Application, which will specify traits/roles for key system components like router and context
+- configuration framework.. like Bread::Board, and Switch Symbie to it?
+
+
+
+Routes
+------
+
+- do not allow add tokens after wildcard token
+- checks for routes ambiguity
+- inheritance of internal details for routes (just MutableCopy or each route as class)?
+
 
 
 DONE
 ====
 
 - Symbie.ID role (for widget and application)
+- url for route instance (route.toString(parameters)  
