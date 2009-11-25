@@ -24,6 +24,11 @@ Routes
 - inheritance of internal details for routes (just MutableCopy or each route as class)?
 
 
+Unsort
+------
+
+- implement sequencing of dispatching (several calls to dispatch should be processed one-by-one) 
+
 
 DONE
 ====

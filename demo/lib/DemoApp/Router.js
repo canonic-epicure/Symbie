@@ -2,27 +2,30 @@ Class('DemoApp.Router', {
     
     isa : 'Symbie.Router',
     
-    does : [ 'SymbieX.History.Router' ],
+    does : [ 'SymbieX.History.Router', 'SymbieX.Template.Shotenjin' ],
     
     routes : {
+        
+        mainLayout : {
+            via : function (context, root) {
+                var layout = root.findOrCreate('DemoApp.Layout.Site')
+                
+                layout.slotAndMark('header').findOrCreate('DemoApp.Widget.Header')
+                
+                layout.slot('center').mark('center')
+                
+                layout.slotAndMark('footer').findOrCreate('DemoApp.Widget.Footer')
+            }
+        },
+        
         
         home : {
             mapTo : '/home',
             
             via : function (context, root) {
-                //root == this, btw
+                root.collectFrom('mainLayout')
                 
-                var layout = root.findOrCreate('DemoApp.Layout.Site')
-                
-                layout.slot('header').findOrCreate('DemoApp.Widget.Header', {
-                    headerPk : 1
-                })
-                
-                layout.slot('center').findOrCreate('DemoApp.Widget.Home')
-                
-                layout.slot('footer').findOrCreate('DemoApp.Widget.Footer', {
-                    footerPk : 1
-                })
+                context.getMark('center').findOrCreate('DemoApp.Widget.Home')
             } 
         },
         
@@ -40,49 +43,29 @@ Class('DemoApp.Router', {
             mapTo : '/sample',
             
             via : function (context, root) {
-                var layout = root.findOrCreate('DemoApp.Layout.Site')
+                root.collectFrom('mainLayout')
                 
-                layout.slot('header').findOrCreate('DemoApp.Widget.Header', {
-                    headerPk : 1
-                })
-                
-                layout.slot('center').findOrCreate('DemoApp.Widget.Sample', {
-                    pkField : 1
-                })
-                
-                layout.slot('footer').findOrCreate('DemoApp.Widget.Footer', {
-                    footerPk : 1
-                })
+                context.getMark('center').findOrCreate('DemoApp.Widget.Sample')
             }
         },
         
         
-        mainLayout : {
-            via : function (context, root) {
-                var layout = root.findOrCreate('DemoApp.Layout.Site')
-                
-                layout.slotAndMark('header').findOrCreate('DemoApp.Widget.Header', {
-                    headerPk : 1
-                })
-                
-                layout.slot('center').mark('center')
-                
-                layout.slotAndMark('footer')
-            }
-        },
-        
-        
-        home2 : {
-            mapTo : '/home2',
+        specialOffer : {
+            mapTo : '/special-offer',
             
             via : function (context, root) {
                 root.collectFrom('mainLayout')
                 
-                context.getMark('center').findOrCreate('DemoApp.Widget.Home')
-                
-                context.getMark('footer').findOrCreate('DemoApp.Widget.Footer', {
-                    footerPk : 1
-                })
+                context.getMark('center').findOrCreate('DemoApp.Widget.SpecialOffer')
+            }
+        },
+        
+        
+        'default' : {
+            mapTo : '/*',
+            
+            via : function (context, root) {
+                root.findOrCreate('DemoApp.Widget.NotFound')
             }
         }
         
