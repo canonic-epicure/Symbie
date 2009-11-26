@@ -67,9 +67,51 @@ Class('DemoApp.Router', {
             via : function (context, root) {
                 root.findOrCreate('DemoApp.Widget.NotFound')
             }
-        }
+        },
         
-    }
+        
+        error : {
+            mapTo : '/immediate-error',
+            
+            via : function (context, root) {
+                throw "Ah, sometimes this happens"
+            }
+        },
+        
+        
+        deferedError : {
+            mapTo : '/deferred-error',
+            
+            via : function (context, root) {
+                root.collectFrom('mainLayout')
+                
+                context.getMark('center').findOrCreate('DemoApp.BrokenClass')
+            }
+        }
+    },
     //eof routes
-       
+    
+    
+    after : {
+        initialize : function () {
+            this.on('dispatchException', this.onDispatchException, this)
+        }
+    },
+    
+    
+    methods : {
+        
+        onDispatchException : function (router, exception) {
+            
+            Ext.Msg.show({
+               title    : 'Error:',
+               msg      : exception,
+               
+               buttons  : Ext.Msg.OK,
+               icon     : Ext.MessageBox.ERROR
+            })
+            
+            return false
+        }
+    }
 })

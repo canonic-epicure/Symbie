@@ -37,7 +37,7 @@ Class('DemoApp.Layout.Site', {
                                 xtype : 'container',
                                 slot : 'header',
                                 
-                                height : 100
+                                height : 150
                             },
                             
                             {
@@ -51,7 +51,7 @@ Class('DemoApp.Layout.Site', {
                                 xtype : 'container',
                                 slot : 'footer',
                                 
-                                height : 100
+                                height : 150
                             }
                         ]
                     },

@@ -1,0 +1,61 @@
+.main-content {
+}
+
+.footer {
+	text-align: center;
+}
+
+
+.header {
+    text-align: center;
+}
+
+
+.demoapp-widget-news {
+    background-color : #789789;
+}
+
+
+.demoapp-not-found-body {
+	background-image: url('../images/icon-lemon-big.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+
+
+
+.demoapp-widget-header .demoapp-control-button-imageholder {
+    width : 100px;
+    height : 100px;
+}
+
+
+.demoapp-icon-apricot {
+	background-image: url('../images/icon-apricot.png');
+}
+
+
+.demoapp-icon-bananas {
+	background-image: url('../images/icon-bananas.png');
+}
+
+
+.demoapp-icon-berry {
+	background-image: url('../images/icon-berry.png');
+}
+
+
+.demoapp-icon-cherry {
+	background-image: url('../images/icon-cherry.png');
+}
+
+
+.demoapp-icon-lemon {
+	background-image: url('../images/icon-lemon.png');
+}
+
+
+.demoapp-icon-kiwi {
+	background-image: url('../images/icon-kiwi.png');
+}

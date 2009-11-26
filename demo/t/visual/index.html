@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<script type="text/javascript" src="/jsan/Task/Joose/Core.js"></script>
+        <script type="text/javascript" src="/jsan/Task/JooseX/Attribute/Bootstrap.js"></script>
 	
 		<!-- Ext bridge  -->
 		
@@ -20,10 +21,15 @@
 		
 		<script type="text/javascript" src="/jsan/ExtX/Reference/Slot.js"></script>
 		
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="/jsan/ExtX/Layout/static/ExtX.Layout.RowFit.css">
+        <link rel="stylesheet" type="text/css" href="/jsan/ExtX/Layout/static/ExtX.Layout.ColumnFit.css">
+        <link rel="stylesheet" type="text/css" href="/jsan/ExtX/Layout/static/ExtX.Layout.Center.css">
+
+        <link rel="stylesheet" type="text/css" href="../../static/css/DemoApp.css">
+        <link rel="stylesheet" type="text/css" href="../../static/css/DemoApp.Control.Button.css">
         
         <script type="text/javascript">
-            JooseX.Namespace.Depended.Manager.my.INC = [ '../lib', '/jsan', 'lib' ]
+            JooseX.Namespace.Depended.Manager.my.INC = [ '../../../lib', '/jsan', '../../lib' ]
             
             use([ 'DemoApp' ], function () {
                 DemoApp.my.run('/').now()
