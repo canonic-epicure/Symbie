@@ -40,12 +40,16 @@ Class('DemoApp.Router', {
         
         
         sample : {
-            mapTo : '/sample',
+            mapTo : '/sample/:value',
             
             via : function (context, root) {
                 root.collectFrom('mainLayout')
                 
-                context.getMark('center').findOrCreate('DemoApp.Widget.Sample')
+                var params = context.getParams()
+                
+                context.getMark('center').findOrCreate('DemoApp.Widget.Sample', {
+                    sampleValue : params.value
+                })
             }
         },
         

@@ -4,7 +4,7 @@ Class('DemoApp.Widget.NotFound', {
     
     isa : 'Symbie.Widget.Container',
     
-    use : [ 'ExtX.Layout.Center', 'ExtX.Layout.RowFit' ],
+    use : [ 'ExtX.Layout.Center' ],
     
 
     before : {

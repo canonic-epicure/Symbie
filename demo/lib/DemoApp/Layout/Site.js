@@ -51,7 +51,7 @@ Class('DemoApp.Layout.Site', {
                                 xtype : 'container',
                                 slot : 'footer',
                                 
-                                height : 150
+                                height : 50
                             }
                         ]
                     },

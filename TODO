@@ -29,6 +29,7 @@ Unsort
 
 - implement sequencing of dispatching (several calls to dispatch should be processed one-by-one) 
 
+- any container should be able to dispatch (even used as non-widget and w/o ID etc)
 
 DONE
 ====

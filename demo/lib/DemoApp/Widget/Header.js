@@ -42,7 +42,7 @@ Class('DemoApp.Widget.Header', {
                         
                         text    : 'Sample',
                         
-                        dispatchTo : '/sample'
+                        dispatchTo : '/sample/someValue'
                     },
                     
                     {
@@ -60,7 +60,7 @@ Class('DemoApp.Widget.Header', {
                         
                         iconCls : 'demoapp-icon-lemon',
                         
-                        text    : 'Error',
+                        text    : 'Not found',
                         
                         dispatchTo : '/not-exists'
                     },
@@ -68,7 +68,7 @@ Class('DemoApp.Widget.Header', {
                     {
                         xtype : 'demoapp-control-button',
                         
-                        iconCls : 'demoapp-icon-kiwi',
+                        iconCls : 'demoapp-icon-bananas-bad',
                         
                         text    : 'Deferred error',
                         
@@ -82,6 +82,16 @@ Class('DemoApp.Widget.Header', {
     
     
     after : {
+        
+        onRender : function () {
+            var div = Ext.DomHelper.createDom({
+                tag : 'div',
+                cls : 'demoapp-header-background'
+            })
+            
+            this.el.appendChild(div)
+        },
+        
         
         initComponent : function () {
             
