@@ -21,7 +21,6 @@ Class('DemoApp.Widget.Header', {
                 
                 layout : 'columnfit',
                 
-                
                 items : [
                     //left column with news
                     {
