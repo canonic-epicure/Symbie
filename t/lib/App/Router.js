@@ -13,7 +13,7 @@ Class('App.Router', {
                 
                 var layout = root.findOrCreate('App.Layout.Site')
                 
-                layout.slot('header').findOrCreate('App.Widget.Header', {
+                layout.slot('header', { isHeaderSlot : true }).findOrCreate('App.Widget.Header', {
                     headerPk : 1
                 })
                 

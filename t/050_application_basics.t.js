@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(58)
+    t.plan(60)
     
     var async0 = t.beginAsync()
     
@@ -53,6 +53,9 @@ StartTest(function(t) {
             })
             
             t.ok(layout.childSteps[0].slotName == 'header', "1st child step of layout step is 'header' slot")
+            t.ok(layout.childSteps[0].config, "'header' slot contain 'config' object")
+            t.ok(layout.childSteps[0].config.isHeaderSlot, "... and its correct")
+            
             t.ok(layout.childSteps[1].slotName == 'center', "2nd child step of layout step is 'center' slot")
             t.ok(layout.childSteps[2].slotName == 'footer', "3rd child step of layout step is 'footer' slot")
             
