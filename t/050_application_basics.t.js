@@ -1,6 +1,6 @@
 StartTest(function(t) {
 	
-    t.plan(60)
+    t.plan(61)
     
     var async0 = t.beginAsync()
     
@@ -89,6 +89,7 @@ StartTest(function(t) {
             t.ok(header.rendered, "Header was rendered")
             t.ok(header.ID, "Header has an ID")
             t.ok(header.getEl().dom, "Header has a DOM element")
+            t.ok(header.touchCalled, "'touch' was called for header")
             
 
             //App.Widget.Home

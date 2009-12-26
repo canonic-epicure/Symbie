@@ -11,7 +11,9 @@ Class('App.Widget.Header', {
     
     
     has : {
-        slots       : true
+        slots       : true,
+        
+        touchCalled : false
     },
 
     
@@ -21,6 +23,14 @@ Class('App.Widget.Header', {
             this.el.update('Header')
         }
         
+    },
+    
+    
+    methods : {
+        
+        touch : function (step) {
+            this.touchCalled = true
+        }
     }
     
 })
