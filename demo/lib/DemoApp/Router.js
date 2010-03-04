@@ -2,7 +2,7 @@ Class('DemoApp.Router', {
     
     isa : 'Symbie.Router',
     
-    does : [ 'SymbieX.History.Router', 'SymbieX.Template.Shotenjin' ],
+    does : [ 'SymbieX.History.Router', 'SymbieX.Template.Shotenjin.Router' ],
     
     routes : {
         

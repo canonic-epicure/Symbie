@@ -24,7 +24,7 @@ Class('DemoApp.Widget.Sample', {
                 
                 items : [
                     {
-                        xtype : 'shotenjin-container',
+                        xtype : 'SymbieX.Template.Shotenjin.Container',
                         slot : 'centered',
                         
                         cls : 'demoapp-widget-sample-body',
