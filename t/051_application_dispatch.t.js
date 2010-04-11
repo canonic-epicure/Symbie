@@ -10,22 +10,20 @@ StartTest(function(t) {
         t.diag("Sanity")
         
         t.ok(App.my, "App.my is here")
-        
 
-        //==================================================================================================================================================================================
-        t.diag("Application setup")
         
-        App.my.setup()
-        
-        var root = App.my.root
-        
-
         //==================================================================================================================================================================================
         t.diag("Application launch")
         
         var async1 = t.beginAsync()
         
-        root.dispatch('/').next(function (context) {
+        
+        // ugly workaround for ExtJS inability to fire Ready func, if dom is already loaded 
+        App.my.__DOM_READY__ = true
+        
+        App.my.run('/').then(function (context) {
+            
+            var root = App.my.root
             
             //==================================================================================================================================================================================
             t.diag("Ext.Container hierarchy after dispacth")
@@ -70,7 +68,7 @@ StartTest(function(t) {
             //==================================================================================================================================================================================
             t.diag("Switching widget in center")
             
-            root.dispatch('/sample').next(function (context) {
+            App.my.dispatch('/sample').then(function (context) {
                 
                 //==================================================================================================================================================================================
                 t.diag("Ext.Container hierarchy after switching")
@@ -122,7 +120,7 @@ StartTest(function(t) {
                 //==================================================================================================================================================================================
                 t.diag("Switching widget in center back")
                 
-                root.dispatch('/home').next(function (context) {
+                App.my.dispatch('/home').then(function (context) {
                     
                     //==================================================================================================================================================================================
                     t.diag("Ext.Container hierarchy after switching back")
@@ -171,11 +169,11 @@ StartTest(function(t) {
     
                     
                     t.endAsync(async1)
-                })
+                }).now()
                 
-            })
+            }).now()
             
-        })
+        }).now()
         
         t.endAsync(async0)
     })

@@ -11,30 +11,30 @@ StartTest(function(t) {
         
         t.ok(App.my, "App.my is here")
         
-
-        //==================================================================================================================================================================================
-        t.diag("Application setup")
-        
-        App.my.setup()
-        
-        var root = App.my.root
-        
-        t.ok(root, "Root widget was created")
-        t.ok(root.ID, "Root widget has an ID")
-        t.ok(root.router, "Root widget has a router")
-        
         
         //==================================================================================================================================================================================
         t.diag("Application launch")
         
         var async1 = t.beginAsync()
         
-        root.dispatch('/').next(function (context) {
+        // ugly workaround for ExtJS inability to fire Ready func, if dom is already loaded 
+        App.my.__DOM_READY__ = true
+        
+        App.my.run('/').then(function (context) {
+            //==================================================================================================================================================================================
+            t.diag("Application setup")
+    
+            var root = App.my.root
+            
+            t.ok(root, "Root widget was created")
+            t.ok(root.ID, "Root widget has an ID")
+            t.ok(root.router, "Root widget has a router")
+            
             
             //==================================================================================================================================================================================
             t.diag("Steps tree structure")
             
-            t.pass("'next' reached after dispatch")
+            t.pass("'then' reached after dispatch")
             
             t.ok(context.stepsRoot.childSteps.length == 1, "Root step in '/' activation context has single child step - layout")
             
@@ -118,7 +118,7 @@ StartTest(function(t) {
             t.diag("Redispatch")
             
             
-            root.dispatch('/').next(function (context1) {
+            App.my.dispatch('/').then(function (context1) {
                 
                 t.ok(context1 != context, 'Different context was instantiated')
                 
@@ -173,8 +173,8 @@ StartTest(function(t) {
                 
                 
                 t.endAsync(async1)
-            })
-        })
+            }).now()
+        }).now()
         
         t.endAsync(async0)
     })

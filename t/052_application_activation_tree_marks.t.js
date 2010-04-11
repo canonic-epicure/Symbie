@@ -11,27 +11,27 @@ StartTest(function(t) {
         
         t.ok(App.my, "App.my is here")
         
-
-        //==================================================================================================================================================================================
-        t.diag("Application setup")
-        
-        App.my.setup()
-        
-        var root = App.my.root
-        
-        t.ok(root, "Root widget was created")
         
         //==================================================================================================================================================================================
         t.diag("Application launch")
         
         var async1 = t.beginAsync()
         
-        root.dispatch('/').next(function (context) {
+        // ugly workaround for ExtJS inability to fire Ready func, if dom is already loaded 
+        App.my.__DOM_READY__ = true
+        
+        App.my.run('/').then(function (context) {
+            //==================================================================================================================================================================================
+            t.diag("Application setup")
+            
+            var root = App.my.root
+            
+            t.ok(root, "Root widget was created")
             
             //==================================================================================================================================================================================
             t.diag("Steps tree structure")
             
-            t.pass("'next' reached after dispatch")
+            t.pass("'then' reached after dispatch")
             
             t.ok(context.stepsRoot.childSteps.length == 1, "Root step in '/' activation context has single child step - layout")
             
@@ -62,14 +62,14 @@ StartTest(function(t) {
             //==================================================================================================================================================================================
             t.diag("Steps tree structure built with marks")
             
-            root.dispatch('/home2').next(function (context2) {
+            App.my.dispatch('/home2').then(function (context2) {
                 
                 t.ok(context2 != context, 'Different context was instantiated')
                 
                 //==================================================================================================================================================================================
                 t.diag("Steps tree structure")
                 
-                t.pass("'next' reached after dispatch")
+                t.pass("'then' reached after dispatch")
                 
                 t.ok(context2.stepsRoot.childSteps.length == 1, "Root step in '/' activation context has single child step - layout")
                 
@@ -97,10 +97,10 @@ StartTest(function(t) {
                 t.ok(layout.childSteps[2].childSteps[0].className == 'App.Widget.Footer', "3rd leaf is an App.Widget.Footer")
                 
                 t.endAsync(async1)
-            })
+            }).now()
         
         
-        })
+        }).now()
         
         t.endAsync(async0)
     })
