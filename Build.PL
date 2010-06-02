@@ -13,6 +13,7 @@ requires        Joose                           3.01
 requires        JooseX.Attribute                0.01
 requires        JooseX.CPS                      0.01
 requires        JooseX.Namespace.Depended       0.01
+requires        JooseX.Meta.Lazy                0.02
 requires        Task.ExtJS                      3.100.000
 requires        JooseX.Bridge.Ext               0.01
 requires        ExtX.Reference.Slot             0.01
