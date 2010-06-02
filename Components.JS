@@ -26,7 +26,11 @@ COMPONENTS = {
         
         "Symbie.Context",
         "Symbie.Router",
+        
         "Symbie.Widget",
+        "Symbie.Widget.Root",
+        "Symbie.Widget.Container",
+        
         "Symbie",
         "Symbie.Application"
     ],
