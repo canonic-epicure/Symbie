@@ -107,6 +107,8 @@ lib/Symbie/Router/Default.js
 lib/Symbie/Widget.js
 lib/Symbie/Widget/Container.js
 lib/Symbie/Widget/Root.js
+lib/Task/Symbie/Bundle.js
+lib/Task/Symbie/Core.js
 MANIFEST
 MANIFEST.SKIP
 META.json

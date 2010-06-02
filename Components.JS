@@ -35,8 +35,11 @@ COMPONENTS = {
     "Bundle" : [
         "jsan:Task.Joose.Core",
         "jsan:Task.JooseX.Attribute.Bootstrap",
-        "jsan:Task.JooseX.CPS.All",
+        
+        "jsan:JooseX.SimpleRequest",
         "jsan:Task.JooseX.Namespace.Depended.Web",
+
+        "jsan:Task.JooseX.CPS.All",
 
         "jsan:JooseX.Bridge.Ext",
         "jsan:JooseX.Meta.Lazy",
