@@ -36,7 +36,7 @@ COMPONENTS = {
     ],
     
     
-    "Bundle" : [
+    "Prereq" : [
         "jsan:Task.Joose.Core",
         "jsan:Task.JooseX.Attribute.Bootstrap",
         
@@ -49,15 +49,19 @@ COMPONENTS = {
         "jsan:JooseX.Meta.Lazy",
         
         "jsan:Task.ExtJS.Adapter.Ext",
-        "jsan:JooseX.Bridge.Ext.LazyConvertor",
+        "jsan:JooseX.Bridge.Ext.Convertor",
         "jsan:Task.ExtJS.All",
         
         "jsan:ExtX.Reference.Slot",
         
-        "jsan:Digest.MD5",
+        "jsan:Digest.MD5"
+    ],
+    
+    
+    "Bundle" : [
+        "+Prereq",
         
         "+Core"
     ]
-    
 } 
 

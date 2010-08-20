@@ -4,7 +4,6 @@ TASKS
 Infrastructure
 --------------
 
-- create Task/ package to speedup the loading
 
 
 
@@ -31,8 +30,13 @@ Unsort
 - any container should be able to dispatch (even used as non-widget and w/o ID etc)
 - do not remember the token after exception in dispatch
 
+- combine Application, Router, RootWidget logic somehow 
+
+
 DONE
 ====
 
+
+- create Task/ package to speedup the loading
 - Symbie.ID role (for widget and application)
 - url for route instance (route.toString(parameters)  
