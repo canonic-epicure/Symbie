@@ -4,6 +4,10 @@ Class('App', {
     
     trait       : 'JooseX.Class.Singleton',
     
+    does        : [
+        'SymbieX.History',
+        'SymbieX.Tracker.GoogleAnalytics'
+    ],
     
     // either directly specify routes here
     
