@@ -19,11 +19,6 @@ COMPONENTS = {
         
         "Symbie.Router.Default",
         
-        "Symbie.Context.Step",
-        "Symbie.Context.Step.Widget",
-        "Symbie.Context.Step.Slot",
-        "Symbie.Context.Step.Root",
-        
         "Symbie.Context",
         "Symbie.Router",
         

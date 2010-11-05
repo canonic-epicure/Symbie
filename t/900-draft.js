@@ -25,9 +25,11 @@ Class('App', {
 
 Role('App.Router.Pictures', {
     
-    trait   : 'Symbie.Router',
+    does    : 'Symbie.Router',
     
     prefix  : '/pictures',
+    
+    
     
     routes  : {
         
@@ -38,12 +40,18 @@ Role('App.Router.Pictures', {
         
         '/pictures/:id' : {
             
-            where : {
+            where   : {
                 id    : /\d+/
             },
             
+            use     : [ 'Some.Lazy.Dependency' ],
+            
             to : function (context) {
                 var id = context.get('id')
+                
+                context.redirectTo('/picture/123').now()
+                
+                this.CONTINUE()
             }
         }
     }
@@ -54,9 +62,9 @@ Role('App.Router.Pictures', {
 // first call - initialization
 App({
     
-})
+}).run('/initial/route') // default to '/'
 
 
-// later in the app, to get the app instance:
+// later in the app:
 
 App().dispatch('/pictures/all/01012010/10012010').now()
