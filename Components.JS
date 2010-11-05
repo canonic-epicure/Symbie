@@ -52,9 +52,10 @@ COMPONENTS = {
         "jsan:JooseX.Bridge.Ext.Convertor",
         "jsan:Task.ExtJS.All",
         
-        "jsan:ExtX.Reference.Slot",
-        
-        "jsan:Digest.MD5"
+        "jsan:ExtX.Reference.Slot"
+//        ,
+//        
+//        "jsan:Digest.MD5"
     ],
     
     
