@@ -19,52 +19,127 @@ StartTest(function(t) {
         t.ok(SymbieX.Controller.FooBar, "SymbieX.Controller.FooBar is here")
         t.ok(SymbieX.SomePlugin, "SymbieX.SomePlugin is here")
         
+        t.ok(TestApp.meta.does(SymbieX.SomePlugin), 'Plugin has been applied as role')
+        
+        t.isDeeply(TestApp.meta.config, {
+            'SymbieX.SomePlugin' : {
+                option1     : 'value1',
+                option2     : 'value2'
+            }
+        }, 'Correct content for `config`')
+        
+        
+        t.isDeeply(TestApp.meta.controllers, {
+            'TestApp.Controller.Pictures' : {},
+            
+            'TestApp.Controller.WikiController' : {},
+            
+            'SymbieX.Controller.FooBar' : {
+                prefix  : 'barbaz'
+            }
+        }, 'Correct content for `controllers`')
         
         
         
-//        //==================================================================================================================================================================================
-//        t.diag("Class creation")
-//        
-//        t.ok(App.Router, "App.Router is here")
-//        
-//        t.ok(App.Router.meta.hasRoute('default'), "'default' route was inheried from 'Symbie.Router' (and composed from 'Symbie.Router.Default')")
-//        
-//        var defaultRoute = App.Router.meta.getRoute('default')
-//        
-//        t.ok(defaultRoute instanceof Symbie.Meta.Route, "'default' route isa Symbie.Meta.Route")
-//        
-//        t.ok(App.Router.meta.hasRoute('home'), "Route 'home' was defined via 'routes' builder")
-//        t.ok(App.Router.meta.hasRoute('index'), "Route 'index' was defined via 'routes' builder")
-//        
-//        
-//        //==================================================================================================================================================================================
-//        t.diag("Instantiation")
-//        
-//        var router = new App.Router({
-//            root : {}
-//        })
-//        
-//        t.ok(router, "'App.Router' was successfully instantiated")
-//    
-//        
-//        //==================================================================================================================================================================================
-//        t.diag("Finding route for '/home'")
-//        
-//        var match = router.findMatch('/home')
-//        
-//        t.ok(match, "Match for '/home' was found")
-//        t.ok(match.route == App.Router.meta.getRoute('home'), ".. and it has a correct route")
-//        t.ok(match.path.length == 0, ".. match contains 0 path elements")
-//        t.ok(Joose.O.isEmpty(match.parameters), ".. match contains no parameters")
-//        
-//    
-//        t.ok(match.route.asString() == '/home', 'Route was stringified correctly')
-//        
-//        
+    //==================================================================================================================================================================================
+    t.diag("Application instantiation")
+        
+        var app = TestApp()
+        
+        t.ok(app, "'TestApp' has been successfully instantiated")
+        
+
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/home'")
+        
+        var match = app.findMatch('/home')
+        
+        t.ok(match, "Match for '/home' was found")
+        t.ok(match.route == TestApp.meta.getRoute('home'), ".. and it has a correct route")
+        t.ok(match.path.length == 0, ".. match contains 0 path elements")
+        t.isDeeply(match.parameters, {}, ".. match contains no parameters")
+    
+        
+        t.ok(match.route.asString() == '/home', 'Route was stringified correctly')
+        
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/'")
+        
+        match = app.findMatch('/')
+        
+        t.ok(match, "Match for '/' was found")
+        t.ok(match.route == TestApp.meta.getRoute('/'), ".. and it has a correct route")
+        t.ok(match.path.length == 0, ".. match contains 0 path elements")
+        t.isDeeply(match.parameters, {}, ".. match contains no parameters")
+        
+        
+        t.ok(match.route.asString() == '/', 'Route was stringified correctly')
+        
+        
+    //==================================================================================================================================================================================
+    t.diag("Pictures controller in the app")
+        
+        var picturesController = app.controllers[ 'TestApp.Controller.Pictures' ]
+        
+        t.isaOk(picturesController, TestApp.Controller.Pictures, 'Correct controller was instantiated')
+        
+        t.ok(picturesController.getFullPrefix() == '/pictures', 'Correct prefix for Pictures controller')
+        
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/pictures/all/:fromDate/:toDate'")
+        
+        match = app.findMatch('/pictures/all/12-34-1234/56-78-5678')
+        
+        t.ok(match, "Match for '/pictures/all/12-34-1234/56-78-5678' was found")
+        t.ok(match.route == TestApp.Controller.Pictures.meta.getRoute('all/:fromDate/:toDate'), ".. and it has a correct route")
+        t.ok(match.path.length == 0, ".. match contains 0 path elements")
+        
+        var fromDate = match.parameters.fromDate
+        
+        t.ok(fromDate[1] == '12', ".. 'fromDate' parameter is the result of regex match #1")
+        t.ok(fromDate[2] == '34', ".. 'fromDate' parameter is the result of regex match #2")
+        t.ok(fromDate[3] == '1234', ".. 'fromDate' parameter is the result of regex match #3")
+        
+        var toDate = match.parameters.toDate
+        
+        t.ok(toDate == '56-78-5678', ".. 'toDate' parameter was the only match and was passed directly")
+        
+        
+        t.ok(match.route.asString({ fromDate : '12-34-1234', toDate : '56-78-5678' }) == '/pictures/all/12-34-1234/56-78-5678', 'Route was stringified correctly')
+    
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/pictures/:id/edit'")
+        
+        match = app.findMatch('/pictures/123/edit')
+        
+        t.ok(match, "Match for '/pictures/123/edit' was found")
+        t.ok(match.route == TestApp.Controller.Pictures.meta.getRoute('editPicture'), ".. and it has a correct route")
+        t.ok(match.path.length == 0, ".. match contains 0 path elements")
+        t.ok(match.parameters.id == '123', ".. match contains correct parameter")
+        
+        
+        t.ok(match.route.asString({ id : 123 }) == '/pictures/123/edit', 'Route was stringified correctly')
+        
+
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/glob/picture'")
+        
+        match = app.findMatch('/glob/picture')
+        
+        t.ok(match, "Match for '/glob/picture' was found")
+        t.ok(match.route == TestApp.Controller.Pictures.meta.getRoute('/glob/picture'), ".. and it has a correct route")
+        
+        t.ok(match.route.asString() == '/glob/picture', 'Route was stringified correctly')
+        
+        
+        
 //        //==================================================================================================================================================================================
 //        t.diag("Finding route for '/wiki/*'")
 //        
-//        match = router.findMatch('/wiki/foo/bar')
+//        match = app.findMatch('/wiki/foo/bar')
 //        
 //        t.ok(match, "Match for '/wiki/foo/bar' was found")
 //        t.ok(match.route == App.Router.meta.getRoute('wiki'), ".. and it has a correct route")
@@ -74,12 +149,12 @@ StartTest(function(t) {
 //        
 //        
 //        t.ok(match.route.asString() == '/wiki', 'Route was stringified correctly')
-//        
-//        
+        
+        
 //        //==================================================================================================================================================================================
 //        t.diag("Finding route for '/wiki/edit'")
 //        
-//        match = router.findMatch('/wiki/edit')
+//        match = app.findMatch('/wiki/edit')
 //        
 //        t.ok(match, "Match for '/wiki/edit' was found")
 //        t.ok(match.route == App.Router.meta.getRoute('editWiki'), ".. and it has a correct route")
@@ -93,7 +168,7 @@ StartTest(function(t) {
 //        //==================================================================================================================================================================================
 //        t.diag("Finding route for '/wiki/:page'")
 //        
-//        match = router.findMatch('/wiki/123')
+//        match = app.findMatch('/wiki/123')
 //        
 //        t.ok(match, "Match for '/wiki/123' was found")
 //        t.ok(match.route == App.Router.meta.getRoute('wikiPage'), ".. and it has a correct route")
@@ -103,55 +178,8 @@ StartTest(function(t) {
 //        t.ok(match.route.asString({ page : 123 }) == '/wiki/123', 'Route was stringified correctly')
 //        
 //        
-//        //==================================================================================================================================================================================
-//        t.diag("Finding route for '/pictures/all/:fromDate/:toDate'")
-//        
-//        match = router.findMatch('/pictures/all/12-34-1234/56-78-5678')
-//        
-//        t.ok(match, "Match for '/pictures/all/12-34-1234/56-78-5678' was found")
-//        t.ok(match.route == App.Router.meta.getRoute('allPictures'), ".. and it has a correct route")
-//        t.ok(match.path.length == 0, ".. match contains 0 path elements")
-//        
-//        var fromDate = match.parameters.fromDate
-//        
-//        t.ok(fromDate[1] == '12', ".. 'fromDate' parameter is the result of regex match #1")
-//        t.ok(fromDate[2] == '34', ".. 'fromDate' parameter is the result of regex match #2")
-//        t.ok(fromDate[3] == '1234', ".. 'fromDate' parameter is the result of regex match #3")
-//        
-//        var toDate = match.parameters.toDate
-//        
-//        t.ok(toDate == '56-78-5678', ".. 'toDate' parameter was the only match and was passed directly")
 //        
 //        
-//        t.ok(match.route.asString({ fromDate : '12-34-1234', toDate : '56-78-5678' }) == '/pictures/all/12-34-1234/56-78-5678', 'Route was stringified correctly')
-//    
-//        
-//        //==================================================================================================================================================================================
-//        t.diag("Finding route for '/pictures/:id/edit'")
-//        
-//        match = router.findMatch('/pictures/123/edit')
-//        
-//        t.ok(match, "Match for '/pictures/123/edit' was found")
-//        t.ok(match.route == App.Router.meta.getRoute('editPicture'), ".. and it has a correct route")
-//        t.ok(match.path.length == 0, ".. match contains 0 path elements")
-//        t.ok(match.parameters.id == '123', ".. match contains correct parameter")
-//        
-//        
-//        t.ok(match.route.asString({ id : 123 }) == '/pictures/123/edit', 'Route was stringified correctly')
-//        
-//        
-//        //==================================================================================================================================================================================
-//        t.diag("Finding route for '/'")
-//        
-//        match = router.findMatch('/')
-//        
-//        t.ok(match, "Match for '/' was found")
-//        t.ok(match.route == App.Router.meta.getRoute('index'), ".. and it has a correct route")
-//        t.ok(match.path.length == 0, ".. match contains 0 path elements")
-//        t.ok(Joose.O.isEmpty(match.parameters), ".. match contains no parameters")
-//        
-//        
-//        t.ok(match.route.asString() == '/', 'Route was stringified correctly')
 //        
 //        
 //        //==================================================================================================================================================================================
@@ -159,7 +187,7 @@ StartTest(function(t) {
 //        
 //        t.throws_ok(function () {
 //            
-//            match = router.findMatch('')
+//            match = app.findMatch('')
 //            
 //        }, "Can't find route for the path", 'Missing route was detected')
         

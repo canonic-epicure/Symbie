@@ -9,7 +9,7 @@ Class('TestApp', {
         'TestApp.Controller.WikiController',
         {
             'SymbieX.Controller.FooBar' : {
-                prefix  : '/barbaz'
+                prefix  : 'barbaz'
             }
         }
     ],

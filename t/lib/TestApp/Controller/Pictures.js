@@ -8,7 +8,7 @@ Class('TestApp.Controller.Pictures', {
         
         {
             'SymbieX.Controller.FooBar' : {
-                prefix  : '/barbaz'
+                prefix  : 'foobar/prefix'
             }
         }
     ],
@@ -26,8 +26,7 @@ Class('TestApp.Controller.Pictures', {
         },
         
         
-        picture : {
-            map : './:id',
+        '/glob/picture' : {
             
             where : {
                 id    : /\d+/
