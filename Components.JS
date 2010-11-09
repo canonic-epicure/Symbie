@@ -9,12 +9,14 @@ COMPONENTS = {
         
         "Symbie.Meta.Route",
         
-//        "Symbie.Meta.Route.Match",
-//        
-//        "Symbie.Context",
-//        "Symbie.Controller",
-//        
-//        "Symbie.Application"
+        "Symbie.Meta.Route.Match",
+        
+        "Symbie.Context",
+        
+        "Symbie.Meta.Controller",
+        "Symbie.Controller",
+        "Symbie.Application",
+        
         "Symbie"
     ],
     
@@ -27,6 +29,17 @@ COMPONENTS = {
         "jsan:Task.JooseX.CPS.All",
         
         "jsan:Task.JooseX.Observable.Core"
+    ],
+    
+    
+    "Test" : [
+        "jsan:JooseX.Class.Singleton",
+        
+        "=t/lib/TestApp.js",
+        "=t/lib/TestApp/Controller/Pictures.js",
+        "=t/lib/TestApp/Controller/WikiController.js",
+        
+        "+Core"
     ],
     
     
