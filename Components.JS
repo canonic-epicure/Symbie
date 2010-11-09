@@ -7,16 +7,15 @@ COMPONENTS = {
         "Symbie.Meta.Route.Token.Root",
         "Symbie.Meta.Route.Token.WildCard",
         
-        "Symbie.Meta.Route.Match",
-        
         "Symbie.Meta.Route",
-        "Symbie.Meta.Router",
         
-        "Symbie.Context",
-        "Symbie.Router",
-        
-        "Symbie",
-        "Symbie.Application"
+//        "Symbie.Meta.Route.Match",
+//        
+//        "Symbie.Context",
+//        "Symbie.Controller",
+//        
+//        "Symbie.Application"
+        "Symbie"
     ],
     
     

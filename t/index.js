@@ -27,7 +27,7 @@ Harness.configure({
 
 
 Harness.start(
-	'010_route_meta.t.js'
+	'010_route.t.js'
 //    ,
 //	'020_route_matching_and_stringification.t.js',
 //	'030_router_dispatching.t.js',

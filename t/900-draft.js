@@ -1,48 +1,91 @@
 Class('App', {
     
     isa         : 'Symbie.Application',
-    
     trait       : 'JooseX.Class.Singleton',
     
-    does        : [
+    plugins     : [
         'SymbieX.History',
-        'SymbieX.Tracker.GoogleAnalytics'
+        
+        {
+            'SymbieX.Tracker.GoogleAnalytics' : {
+                option1         : 'value1',
+                option2         : 'value2'
+            }
+        }
     ],
     
-    // either directly specify routes here
+    config : {
+        'SymbieX.History' : {
+            option1         : 'value1',
+            option2         : 'value2'
+        } 
+    },
+    
+    controllers        : [
+        'SymbieX.Controller.Login',
+        'Controller.Pictures', 
+        {                                                                                                                                                                                                      
+            'App.Controller.Users' : { ... },
+            'App.Controller.Login' : { ... }
+        } 
+    ],
+    
+    // or directly specify routes here
     
     routes      : {
+        
+        // '' synonym
+        INDEX   : function () {
+        },
+        
         
         '/pictures/all/:fromDate/:toDate' : function (context) {
         
         }
-    },
+    }
     
-    // or receive via role
-    
-    does        : [ 'App.Router.Pictures', 'App.Router.Users' ]
     
 })
 
 
 
 
-Role('App.Router.Pictures', {
+Class('App.Controller.Pictures', {
     
-    does    : 'Symbie.Router',
+    isa     : 'Symbie.Controller',
     
-    prefix  : '/pictures',
+    prefix  : './pictures', // looks after Controller
+
     
+    controllers        : [
+        'App.Controller.Pictures', 
+        {
+            'App.Controller.Users' : { ... },
+            'App.Controller.Login' : { ... }
+        } 
+    ],
     
     
     routes  : {
         
-        '/all/:fromDate/:toDate' : function (context) {
-            var fromDate = context.get('fromDate')
+        picturesByDateRange : {
+            map         : 'all/:fromDate/:toDate',
+            
+            where       : {
+                fromDate        : /&^*&^*&/
+            },
+            
+            action      : function (context, fromDate, toDate) {
+                var fromDate = context.get('fromDate')
+            } 
         },
         
         
-        '/pictures/:id' : {
+        'all/:fromDate/:toDate' : function (context) {
+            var fromDate = context.get('fromDate')
+        },
+        
+        ':id' : {
             
             where   : {
                 id    : /\d+/
@@ -50,23 +93,52 @@ Role('App.Router.Pictures', {
             
             use     : [ 'Some.Lazy.Dependency' ],
             
-            to : function (context) {
-                var id = context.get('id')
+            action  : function (context, id) {
+                // or var id = context.get('id')
+                // context.app == this - instance of application
                 
                 context.redirectTo('/picture/123').now()
                 
                 this.CONTINUE()
             }
         }
+    },
+    
+    
+    methods : {
+        
+        ACTIVATE : function () {
+        },
+        
+        
+        FINALIZE : function () {
+        }
+    },
+    
+    
+    continued : {
+    
+        methods : {
+            
+            PRE    : function () {
+            },
+            
+            
+            BEGIN   : function () {
+            },
+            
+            
+            END     : function () {
+            }
+        }
     }
-
 })
 
 
 // first call - initialization
 App({
     
-}).run('/initial/route') // default to '/'
+}).run('/initial/route').now() // default to '/'
 
 
 // later in the app:
