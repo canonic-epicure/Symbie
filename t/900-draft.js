@@ -69,7 +69,7 @@ Class('App.Controller.Pictures', {
     routes  : {
         
         picturesByDateRange : {
-            map         : 'all/:fromDate/:toDate',
+            map         : './all/:fromDate/:toDate',
             
             where       : {
                 fromDate        : /&^*&^*&/

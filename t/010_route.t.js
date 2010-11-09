@@ -10,7 +10,8 @@ StartTest(function(t) {
     t.diag("Instantiation on simple route")
     
     var route = new Symbie.Meta.Route({
-        map : '/home'
+        map         : '/home',
+        action      : function () {}
     })
     
     t.ok(route, "'Symbie.Meta.Route' was successfully instantiated")
@@ -27,7 +28,8 @@ StartTest(function(t) {
     t.diag("Index route")
     
     var index = new Symbie.Meta.Route({
-        map : '/'
+        name        : '/',
+        action      : function () {}
     })
     
     t.ok(index, "'Symbie.Meta.Route' was successfully instantiated")
@@ -44,9 +46,11 @@ StartTest(function(t) {
     t.diag("Route with parameter")
     
     var param = new Symbie.Meta.Route({
-        map : '/pictures/all/:fromDate/:toDate',
+        map         : '/pictures/all/:fromDate/:toDate',
         
-        where : {
+        action      : function () {},
+        
+        where       : {
             fromDate    : /\d\d-\d\d-\d{4}/
         }
     })

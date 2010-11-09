@@ -1,0 +1,3 @@
+Role('SymbieX.SomePlugin', {
+    
+})
