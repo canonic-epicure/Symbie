@@ -6,7 +6,7 @@ Class('DemoApp', {
     
     
     use         : [ 
-        'DemoApp.Widget.Root' 
+//        'DemoApp.Widget.Root' 
     ],
     
     
@@ -16,13 +16,25 @@ Class('DemoApp', {
     
     methods : {
         
-        mainLayout : function (context, root) {
+        ACTIVATE : function () {
+            Ext.getBody().update('')
         }
     },
     
     
     continued : {
+        
         methods : {
+            
+            setup : function () {
+                
+                this.AND(function () {
+                    
+                    Ext.onReady(this.getCONTINUE())
+                })
+                
+                this.SUPER().now()
+            }
         }
     },
     
@@ -30,35 +42,34 @@ Class('DemoApp', {
     routes : {
         
         '/' : function (context) {
+            Ext.getBody().update('ROOT')
         },
         
         
         '/home' : function (context) {
+            context.redirect('/')
         },
         
         
-        '/sample/:value' : function (context) {
+        '/sample/:value' : function (context, value) {
+            Ext.getBody().update('VALUE: ' + value)
         },
         
         
         '/special-offer' : function (context) {
+            Ext.getBody().update('Special offer page')
         },
         
         
         '/*' : function (context) {
+            Ext.getBody().update('404 - Page not found')
         },
         
         
-        '/immediate-error' : function (context) {
+        '/error' : function (context) {
             throw "Ah, sometimes this happens"
-        },
-        
-        
-        '/deferred-error' : function (context) {
         }
     }
-    //eof routes
-    
 })
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
-		<script type="text/javascript" src="../../lib/Task/Symbie/Bundle.js"></script>
+		<script type="text/javascript" src="../lib/Task/Symbie/Bundle.js"></script>
 	
 		<!-- Ext bridge  -->
 		
@@ -10,7 +10,6 @@
 		<script type="text/javascript" src="/jsan/Task/ExtJS/Adapter/Ext.js"></script>
         
         <script type="text/javascript" src="/jsan/JooseX/Bridge/Ext.js"></script>
-        
         <script type="text/javascript" src="/jsan/JooseX/Meta/Lazy.js"></script>
 		<script type="text/javascript" src="/jsan/JooseX/Bridge/Ext/LazyConvertor.js"></script>
 		
@@ -21,10 +20,14 @@
 		<script type="text/javascript" src="/jsan/ExtX/Reference/Slot.js"></script>
 		
         <script type="text/javascript">
-            JooseX.Namespace.Depended.Manager.my.INC = [ '../lib', '../../lib', '/jsan' ]
+            JooseX.Namespace.Depended.Manager.my.INC = [ 'lib', '../lib', '/jsan' ]
             
-            use([ 'TestApp' ], function () {
-            	TestApp().run('/').now()
+            use([ 'DemoApp' ], function () {
+            	var hash = window.location.hash
+            	
+            	hash = hash.replace(/^#/, '')
+            	
+            	DemoApp().run(hash || '/').now()
             })
             
         </script>
