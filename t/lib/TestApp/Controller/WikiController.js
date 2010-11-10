@@ -6,14 +6,20 @@ Class('TestApp.Controller.WikiController', {
     
     routes : {
         
+        INDEX : {
+            map         : '',
+            action      : function () {}
+        },
+        
+        
         editWiki : {
-            map         : './edit',
+            map         : 'edit',
             action      : function () {}
         },
         
         
         wikiPage : {
-            map : './:page',
+            map         : ':page',
             
             where : {
                 page    : /\d+/

@@ -15,7 +15,7 @@ Class('TestApp.Controller.Pictures', {
     
     routes : {
         
-        'all/:fromDate/:toDate' : {
+        './all/:fromDate/:toDate' : {
             
             where : {
                 fromDate    : /(\d\d)-(\d\d)-(\d{4})/,

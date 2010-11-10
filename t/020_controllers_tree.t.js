@@ -42,7 +42,7 @@ StartTest(function(t) {
         
         
     //==================================================================================================================================================================================
-    t.diag("Application instantiation")
+    t.diag("Application")
         
         var app = TestApp()
         
@@ -60,7 +60,7 @@ StartTest(function(t) {
         t.isDeeply(match.parameters, {}, ".. match contains no parameters")
     
         
-        t.ok(match.route.asString() == '/home', 'Route was stringified correctly')
+        t.ok(match.asString() == '/home', 'Route was stringified correctly')
         
         
         //==================================================================================================================================================================================
@@ -74,11 +74,11 @@ StartTest(function(t) {
         t.isDeeply(match.parameters, {}, ".. match contains no parameters")
         
         
-        t.ok(match.route.asString() == '/', 'Route was stringified correctly')
+        t.ok(match.asString() == '/', 'Route was stringified correctly')
         
         
     //==================================================================================================================================================================================
-    t.diag("Pictures controller in the app")
+    t.diag("Pictures controller")
         
         var picturesController = app.controllers[ 'TestApp.Controller.Pictures' ]
         
@@ -93,7 +93,7 @@ StartTest(function(t) {
         match = app.findMatch('/pictures/all/12-34-1234/56-78-5678')
         
         t.ok(match, "Match for '/pictures/all/12-34-1234/56-78-5678' was found")
-        t.ok(match.route == TestApp.Controller.Pictures.meta.getRoute('all/:fromDate/:toDate'), ".. and it has a correct route")
+        t.ok(match.route == TestApp.Controller.Pictures.meta.getRoute('./all/:fromDate/:toDate'), ".. and it has a correct route")
         t.ok(match.path.length == 0, ".. match contains 0 path elements")
         
         var fromDate = match.parameters.fromDate
@@ -106,9 +106,22 @@ StartTest(function(t) {
         
         t.ok(toDate == '56-78-5678', ".. 'toDate' parameter was the only match and was passed directly")
         
+        t.isDeeply(match.paramsOrder, [ 'fromDate', 'toDate' ], 'Correct params order in match')
         
-        t.ok(match.route.asString({ fromDate : '12-34-1234', toDate : '56-78-5678' }) == '/pictures/all/12-34-1234/56-78-5678', 'Route was stringified correctly')
+        
+        t.ok(match.asString({ fromDate : '12-34-1234', toDate : '56-78-5678' }) == '/pictures/all/12-34-1234/56-78-5678', 'Route was stringified correctly')
     
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/glob/picture'")
+        
+        match = app.findMatch('/glob/picture')
+        
+        t.ok(match, "Match for '/glob/picture' was found")
+        t.ok(match.route == TestApp.Controller.Pictures.meta.getRoute('/glob/picture'), ".. and it has a correct route")
+        
+        t.ok(match.asString() == '/glob/picture', 'Route was stringified correctly')
+
         
         //==================================================================================================================================================================================
         t.diag("Finding route for '/pictures/:id/edit'")
@@ -121,75 +134,110 @@ StartTest(function(t) {
         t.ok(match.parameters.id == '123', ".. match contains correct parameter")
         
         
-        t.ok(match.route.asString({ id : 123 }) == '/pictures/123/edit', 'Route was stringified correctly')
+        t.ok(match.asString({ id : 123 }) == '/pictures/123/edit', 'Route was stringified correctly')
         
 
         //==================================================================================================================================================================================
-        t.diag("Finding route for '/glob/picture'")
+        t.diag("Nested WikiController")
         
-        match = app.findMatch('/glob/picture')
+        var picturesWikiController = picturesController.controllers[ 'TestApp.Controller.WikiController' ]
         
-        t.ok(match, "Match for '/glob/picture' was found")
-        t.ok(match.route == TestApp.Controller.Pictures.meta.getRoute('/glob/picture'), ".. and it has a correct route")
+        t.isaOk(picturesWikiController, TestApp.Controller.WikiController, 'Correct controller was instantiated')
         
-        t.ok(match.route.asString() == '/glob/picture', 'Route was stringified correctly')
-        
+        t.ok(picturesWikiController.getFullPrefix() == '/pictures/wiki', 'Correct prefix for nested WikiController controller')
         
         
-//        //==================================================================================================================================================================================
-//        t.diag("Finding route for '/wiki/*'")
-//        
-//        match = app.findMatch('/wiki/foo/bar')
-//        
-//        t.ok(match, "Match for '/wiki/foo/bar' was found")
-//        t.ok(match.route == App.Router.meta.getRoute('wiki'), ".. and it has a correct route")
-//        t.ok(match.path.length == 2, ".. match contains 2 path elements")
-//        t.ok(match.path[0] == 'foo' && match.path[1] == 'bar', ".. match contains 2 correct path elements")
-//        t.ok(Joose.O.isEmpty(match.parameters), ".. match contains no parameters")
-//        
-//        
-//        t.ok(match.route.asString() == '/wiki', 'Route was stringified correctly')
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/pictures/wiki'")
+        
+        match = app.findMatch('/pictures/wiki/')
+        
+        t.ok(match, "Match for '/pictures/wiki' was found")
+        t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('INDEX'), ".. and it has a correct route")
+        
+        t.ok(match.asString() == '/pictures/wiki/', 'Route was stringified correctly')
+
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/pictures/wiki/123'")
+        
+        match = app.findMatch('/pictures/wiki/123')
+        
+        t.ok(match, "Match for '/pictures/wiki/123' was found")
+        t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('wikiPage'), ".. and it has a correct route")
+        t.ok(match.parameters.page == '123', 'Correct parameter extracted')
+        
+        t.ok(match.asString({ page : 123 }) == '/pictures/wiki/123', 'Route was stringified correctly')
+
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/pictures/wiki/edit'")
+
+        match = app.findMatch('/pictures/wiki/edit')
+        
+        t.ok(match, "Match for '/pictures/wiki/edit' was found")
+        t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('editWiki'), ".. and it has a correct route")
+        
+        t.ok(match.asString() == '/pictures/wiki/edit', 'Route was stringified correctly')
         
         
-//        //==================================================================================================================================================================================
-//        t.diag("Finding route for '/wiki/edit'")
-//        
-//        match = app.findMatch('/wiki/edit')
-//        
-//        t.ok(match, "Match for '/wiki/edit' was found")
-//        t.ok(match.route == App.Router.meta.getRoute('editWiki'), ".. and it has a correct route")
-//        t.ok(match.path.length == 0, ".. match contains 0 path elements")
-//        t.ok(Joose.O.isEmpty(match.parameters), ".. match contains no parameters")
-//        
-//        
-//        t.ok(match.route.asString({ path : 'edit' }) == '/wiki/edit', 'Route was stringified correctly')
-//    
-//        
-//        //==================================================================================================================================================================================
-//        t.diag("Finding route for '/wiki/:page'")
-//        
-//        match = app.findMatch('/wiki/123')
-//        
-//        t.ok(match, "Match for '/wiki/123' was found")
-//        t.ok(match.route == App.Router.meta.getRoute('wikiPage'), ".. and it has a correct route")
-//        t.ok(match.path.length == 0, ".. match contains 0 path elements")
-//        t.ok(match.parameters.page == '123', ".. match contains correct parameters")
-//    
-//        t.ok(match.route.asString({ page : 123 }) == '/wiki/123', 'Route was stringified correctly')
-//        
-//        
-//        
-//        
-//        
-//        
-//        //==================================================================================================================================================================================
-//        t.diag("Missing route")
-//        
-//        t.throws_ok(function () {
-//            
-//            match = app.findMatch('')
-//            
-//        }, "Can't find route for the path", 'Missing route was detected')
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/pictures/wiki/foo/bar'")
+        
+        match = app.findMatch('/pictures/wiki/foo/bar')
+        
+        t.ok(match, "Match for '/pictures/wiki/foo/bar' was found")
+        t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('catchAll'), ".. and it has a correct route")
+        t.isDeeply(match.path, [ 'foo', 'bar' ], ".. Correct path extracted from wildcard match")
+        
+        t.ok(match.asString(match.path) == '/pictures/wiki/foo/bar', 'Route was stringified correctly')
+        
+
+        //==================================================================================================================================================================================
+        t.diag("Nested SymbieX controller")
+        
+        var picturesSymbieXController = picturesController.controllers[ 'SymbieX.Controller.FooBar' ]
+        
+        t.isaOk(picturesSymbieXController, SymbieX.Controller.FooBar, 'Correct controller was instantiated')
+        
+        t.ok(picturesSymbieXController.getFullPrefix() == '/pictures/foobar/prefix', 'Correct prefix for nested SymbieX controller')
+        
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/pictures/foobar/prefix/foobar/123/456'")
+        
+        match = app.findMatch('/pictures/foobar/prefix/foobar/123/456')
+        
+        t.ok(match, "Match for '/pictures/foobar/prefix/foobar/123/456' was found")
+        t.ok(match.route == SymbieX.Controller.FooBar.meta.getRoute('foobar/*'), ".. and it has a correct route")
+        t.isDeeply(match.path, [ '123', '456' ], ".. Correct path extracted from wildcard match")
+        
+        t.ok(match.asString(match.path) == '/pictures/foobar/prefix/foobar/123/456', 'Route was stringified correctly')
+        
+        
+    //==================================================================================================================================================================================
+    t.diag("WikiController")
+        
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/wiki/'")
+        
+        match = app.findMatch('/wiki/')
+        
+        t.ok(match, "Match for '/wiki/' was found")
+        t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('INDEX'), ".. and it has a correct route")
+        
+        t.ok(match.asString() == '/wiki/', 'Route was stringified correctly')
+        
+        
+    //==================================================================================================================================================================================
+    t.diag("Missing route")
+        
+        t.throws_ok(function () {
+            
+            match = app.findMatch('')
+            
+        }, "Can't find route for the path", 'Missing route was detected')
         
     
         
