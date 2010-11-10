@@ -35,9 +35,13 @@ COMPONENTS = {
     "Test" : [
         "jsan:JooseX.Class.Singleton",
         
-        "=t/lib/TestApp.js",
-        "=t/lib/TestApp/Controller/Pictures.js",
+        "=t/lib/SymbieX/SomePlugin.js",
+        "=t/lib/SymbieX/Controller/FooBar.js",
+        
         "=t/lib/TestApp/Controller/WikiController.js",
+        "=t/lib/TestApp/Controller/Pictures.js",
+        
+        "=t/lib/TestApp.js",
         
         "+Core"
     ],

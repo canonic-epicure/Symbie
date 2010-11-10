@@ -26,13 +26,53 @@ Class('TestApp', {
     routes : {
         
         '/' : {
-            action      : function () {}
+            action      : function () {
+                ACTION.push('TestApp: /')
+            }
         },
         
         
         home : {
             map       : '/home',
-            action      : function () {}
+            
+            action      : function () {
+                ACTION.push('TestApp: /home')
+            }
+        }
+    },
+    
+    
+    methods : {
+        
+        ACTIVATE : function () {
+            ACTION.push('TestApp: ACTIVATE')
+        },
+        
+
+        FINALIZE : function () {
+            ACTION.push('TestApp: FINALIZE')
+        }
+    },
+    
+    
+    continued : {
+        
+        methods : {
+            
+            PRE : function () {
+                ACTION.push('TestApp: PRE')
+            },
+            
+    
+            BEGIN : function () {
+                ACTION.push('TestApp: BEGIN')
+            },
+            
+    
+            END : function () {
+                ACTION.push('TestApp: END')
+            }
         }
     }
+    
 })

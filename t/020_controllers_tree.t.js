@@ -12,7 +12,6 @@ StartTest(function(t) {
         //==================================================================================================================================================================================
         t.diag("Collected dependencies from 'plugins' and 'controllers' builders")
         
-        
         t.ok(TestApp.Controller.Pictures, "TestApp.Controller.Pictures is here")
         t.ok(TestApp.Controller.WikiController, "TestApp.Controller.WikiController is here")
         

@@ -39,13 +39,6 @@ Harness.start(
             },
             'Task.Symbie.Core'
         ]
-    }
-    
-    
-//    ,
-//	'030_router_dispatching.t.js',
-//	'040_widget_id.t.js',
-//	'050_application_basics.t.js',
-//	'051_application_dispatch.t.js',
-//	'052_application_activation_tree_marks.t.js'
+    },
+    '030_dispatching.t.js'
 )
