@@ -28,6 +28,8 @@ Class('TestApp', {
         '/' : {
             action      : function () {
                 ACTION.push('TestApp: /')
+                
+                this.CONTINUE()
             }
         },
         
@@ -37,6 +39,8 @@ Class('TestApp', {
             
             action      : function () {
                 ACTION.push('TestApp: /home')
+                
+                this.CONTINUE()
             }
         }
     },
@@ -59,18 +63,24 @@ Class('TestApp', {
         
         methods : {
             
-            PRE : function () {
+            PRE : function (context) {
                 ACTION.push('TestApp: PRE')
+                
+                this.SUPER(context).now()
             },
             
     
-            BEGIN : function () {
+            BEGIN : function (context) {
                 ACTION.push('TestApp: BEGIN')
+                
+                this.SUPER(context).now()
             },
             
     
-            END : function () {
+            END : function (context) {
                 ACTION.push('TestApp: END')
+                
+                this.SUPER(context).now()
             }
         }
     }

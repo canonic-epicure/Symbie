@@ -147,7 +147,7 @@ StartTest(function(t) {
         
         
         //==================================================================================================================================================================================
-        t.diag("Finding route for '/pictures/wiki'")
+        t.diag("Finding route for '/pictures/wiki/'")
         
         match = app.findMatch('/pictures/wiki/')
         

@@ -8,13 +8,23 @@ Class('TestApp.Controller.WikiController', {
         
         INDEX : {
             map         : '',
-            action      : function () {}
+            
+            action      : function () {
+                ACTION.push('TestApp.Controller.WikiController: INDEX')
+                
+                this.CONTINUE()
+            }
         },
         
         
         editWiki : {
             map         : 'edit',
-            action      : function () {}
+            
+            action      : function () {
+                ACTION.push('TestApp.Controller.WikiController: editWiki')
+                
+                this.CONTINUE()
+            }
         },
         
         
@@ -25,13 +35,63 @@ Class('TestApp.Controller.WikiController', {
                 page    : /\d+/
             },
             
-            action      : function () {}
+            action      : function () {
+                ACTION.push('TestApp.Controller.WikiController: wikiPage')
+                
+                this.CONTINUE()
+            }
         },
         
         
         catchAll : {
             map         : '*',
-            action      : function () {}
+            
+            action      : function () {
+                ACTION.push('TestApp.Controller.WikiController: catchAll')
+                
+                this.CONTINUE()
+            }
+        }
+    },
+    
+    
+    methods : {
+        
+        ACTIVATE : function () {
+            ACTION.push('TestApp.Controller.WikiController: ACTIVATE')
+        },
+        
+
+        FINALIZE : function () {
+            ACTION.push('TestApp.Controller.WikiController: FINALIZE')
+        }
+    },
+    
+    
+    continued : {
+        
+        methods : {
+            
+            PRE : function (context) {
+                ACTION.push('TestApp.Controller.WikiController: PRE')
+                
+                this.SUPER(context).now()
+            },
+            
+    
+            BEGIN : function (context) {
+                ACTION.push('TestApp.Controller.WikiController: BEGIN')
+                
+                this.SUPER(context).now()
+            },
+            
+    
+            END : function (context) {
+                ACTION.push('TestApp.Controller.WikiController: END')
+                
+                this.SUPER(context).now()
+            }
         }
     }
+    
 })

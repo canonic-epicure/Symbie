@@ -40,5 +40,6 @@ Harness.start(
             'Task.Symbie.Core'
         ]
     },
-    '030_dispatching.t.js'
+    '030_dispatch_basics.t.js',
+    '040_dispatch_advanced.t.js'
 )
