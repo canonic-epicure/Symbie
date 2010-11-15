@@ -23,11 +23,8 @@
             JooseX.Namespace.Depended.Manager.my.INC = [ 'lib', '../lib', '/jsan' ]
             
             use([ 'DemoApp' ], function () {
-            	var hash = window.location.hash
             	
-            	hash = hash.replace(/^#/, '')
-            	
-            	DemoApp().run(hash || '/').now()
+            	DemoApp().run('/').now()
             })
             
         </script>

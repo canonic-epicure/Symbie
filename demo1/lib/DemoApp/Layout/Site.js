@@ -1,12 +1,15 @@
 Class('DemoApp.Layout.Site', {
     
-    isa : 'Symbie.Widget.Container',
+    isa     : Ext.Container,
     
-    use : [ 'ExtX.Layout.RowFit', 'ExtX.Layout.ColumnFit', 'ExtX.Layout.NBSP' ],
     
-    has : {
+    use     : [ 'ExtX.Layout.RowFit', 'ExtX.Layout.ColumnFit', 'ExtX.Layout.NBSP' ],
+    
+    
+    has     : {
         slots       : true
     },
+    
     
     before : {
         

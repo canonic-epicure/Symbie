@@ -4,6 +4,10 @@ Class('DemoApp', {
 
     trait       : 'JooseX.Class.Singleton',
     
+    plugins     : [
+        'SymbieX.History'
+    ],
+    
     
     use         : [ 
 //        'DemoApp.Widget.Root' 
@@ -16,8 +20,12 @@ Class('DemoApp', {
     
     methods : {
         
+        createPath : function (str) {
+            
+        },
+        
+        
         ACTIVATE : function () {
-            Ext.getBody().update('')
         }
     },
     
@@ -30,7 +38,17 @@ Class('DemoApp', {
                 
                 this.AND(function () {
                     
-                    Ext.onReady(this.getCONTINUE())
+                    var CONTINUE = this.getCONTINUE()
+                    
+                    Ext.onReady(function () {
+                        
+                        Ext.getBody().createChild({
+                            tag     : 'div',
+                            id      : 'content'
+                        })
+                        
+                        CONTINUE()
+                    })
                 })
                 
                 this.SUPER().now()
@@ -42,27 +60,38 @@ Class('DemoApp', {
     routes : {
         
         '/' : function (context) {
-            Ext.getBody().update('ROOT')
+            
+            context.call('/')
+            
+            this.CONTINUE()
         },
         
         
         '/home' : function (context) {
-            context.redirect('/')
+            Ext.get('content').update('HOME')
+            
+            this.CONTINUE()
         },
         
         
         '/sample/:value' : function (context, value) {
-            Ext.getBody().update('VALUE: ' + value)
+            Ext.get('content').update('VALUE: ' + value)
+            
+            this.CONTINUE()
         },
         
         
         '/special-offer' : function (context) {
-            Ext.getBody().update('Special offer page')
+            Ext.get('content').update('Special offer page')
+            
+            this.CONTINUE()
         },
         
         
         '/*' : function (context) {
-            Ext.getBody().update('404 - Page not found')
+            Ext.get('content').update('404 - Page not found')
+            
+            this.CONTINUE()
         },
         
         

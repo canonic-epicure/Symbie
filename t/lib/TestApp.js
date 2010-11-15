@@ -66,6 +66,12 @@ Class('TestApp', {
             PRE : function (context) {
                 ACTION.push('TestApp: PRE')
                 
+                if (window.TEST_PRE) {
+                    this.CONTINUE(false)
+                    
+                    return
+                }
+                
                 this.SUPER(context).now()
             },
             
