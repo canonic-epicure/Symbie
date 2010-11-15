@@ -24,7 +24,7 @@ Class('DemoApp.Widget.Header', {
                 items : [
                     //left column with news
                     {
-                        xtype : 'demoapp-control-button',
+                        xtype : 'DemoApp.Control.Button',
                         
                         iconCls : 'demoapp-icon-apricot',
                         
@@ -35,7 +35,7 @@ Class('DemoApp.Widget.Header', {
                     //eof main content area
                     
                     {
-                        xtype : 'demoapp-control-button',
+                        xtype : 'DemoApp.Control.Button',
                         
                         iconCls : 'demoapp-icon-bananas',
                         
@@ -45,7 +45,7 @@ Class('DemoApp.Widget.Header', {
                     },
                     
                     {
-                        xtype : 'demoapp-control-button',
+                        xtype : 'DemoApp.Control.Button',
                         
                         iconCls : 'demoapp-icon-berry',
                         
@@ -55,7 +55,7 @@ Class('DemoApp.Widget.Header', {
                     },
                     
                     {
-                        xtype : 'demoapp-control-button',
+                        xtype : 'DemoApp.Control.Button',
                         
                         iconCls : 'demoapp-icon-lemon',
                         
@@ -65,7 +65,7 @@ Class('DemoApp.Widget.Header', {
                     },
                     
                     {
-                        xtype : 'demoapp-control-button',
+                        xtype : 'DemoApp.Control.Button',
                         
                         iconCls : 'demoapp-icon-bananas-bad',
                         

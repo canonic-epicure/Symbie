@@ -1,13 +1,15 @@
 Class('DemoApp.Layout.Site', {
     
-    isa     : Ext.Container,
+    isa     : Ext.Panel,
     
     
     use     : [ 'ExtX.Layout.RowFit', 'ExtX.Layout.ColumnFit', 'ExtX.Layout.NBSP' ],
     
     
     has     : {
-        slots       : true
+        slots       : true,
+        
+        title       : 'yo'
     },
     
     
@@ -16,6 +18,18 @@ Class('DemoApp.Layout.Site', {
         initComponent : function () {
             
             Ext.apply(this, {
+                
+                tbar    : [
+                    {
+                        text    : 'yo',
+                        
+                        handler : function () {
+                            
+                            DemoApp().dispatch('/special-offer').now()
+                        }
+                    }
+                ],
+                
                 
                 layout : 'columnfit',
                 
@@ -44,10 +58,11 @@ Class('DemoApp.Layout.Site', {
                             },
                             
                             {
-                                xtype : 'container',
-                                slot : 'center',
+                                xtype   : 'container',
+                                slot    : 'center',
                                 
-                                layout : 'card'
+                                layout      : 'card',
+                                activeItem  : 0
                             },
                             
                             {

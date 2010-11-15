@@ -4,13 +4,16 @@ Class('DemoApp.Widget.Root', {
     
     
     has : {
+        slots   : true,
+        
         app     : {
             required         : true
         },
         
         title   : 'Symbie test application',
         
-        layout  : 'card'
+        layout      : 'card',
+        activeItem  : 0
     },
     
     

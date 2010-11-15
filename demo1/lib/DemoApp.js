@@ -13,7 +13,8 @@ Class('DemoApp', {
         'DemoApp.Widget.Root',
         'DemoApp.Layout.Site',
         'DemoApp.Widget.Header',
-        'DemoApp.Widget.Footer'
+        'DemoApp.Widget.Footer',
+        'DemoApp.Widget.Home'
     ],
     
     
@@ -42,6 +43,16 @@ Class('DemoApp', {
             var root = c.stash.root = this.root
             
             root.removeAll()
+        },
+        
+        
+        FINALIZE : function (c) {
+            var root = c.stash.root
+            
+//            root.slots.siteLayout.slots.center.layout.setActiveItem(root.slots.siteLayout.slots.home)
+            root.setActiveSlot('siteLayout')
+            
+            root.doLayout()
         }
     },
     
@@ -81,7 +92,9 @@ Class('DemoApp', {
             
             this.createMainLayout(root)
             
-            root.slots.siteLayout.slots.center.add({ xtype : 'DemoApp.Widget.Home' })
+            var home = root.slots.siteLayout.slots.center.add({ xtype : 'DemoApp.Widget.Home', slot : 'home' })
+            
+//            root.slots.siteLayout.slots.center.layout.setActiveItem(home)
             
             this.CONTINUE()
         },
@@ -107,7 +120,7 @@ Class('DemoApp', {
         
         
         '/special-offer' : function (context) {
-            Ext.get('content').update('Special offer page')
+//            Ext.get('content').update('Special offer page')
             
             this.CONTINUE()
         },
