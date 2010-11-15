@@ -1,6 +1,6 @@
 Class('DemoApp.Widget.Home', {
     
-    isa : 'Symbie.Widget.Container',
+    isa : Ext.Container,
     
     use : [ 'DemoApp.Widget.SpecialOffer', 'DemoApp.Widget.News', 'ExtX.Layout.ColumnFit' ],
     
@@ -22,7 +22,7 @@ Class('DemoApp.Widget.Home', {
                 items : [
                     //left column with news
                     {
-                        xtype : 'demoapp-widget-news',
+                        xtype : 'DemoApp.Widget.News',
                         slot : 'news',
                         
                         width : '50%'
@@ -30,7 +30,7 @@ Class('DemoApp.Widget.Home', {
                     //eof main content area
                     
                     {
-                        xtype : 'demoapp-widget-specialoffer',
+                        xtype : 'DemoApp.Widget.SpecialOffer',
                         slot : 'offer',
                         
                         width : '50%',
@@ -39,15 +39,6 @@ Class('DemoApp.Widget.Home', {
                     }
                 ]
             })
-        }
-        //eof initComponent
-    },
-    
-    
-    after : {
-        
-        initComponent : function () {
-            
         }
         //eof initComponent
     }    

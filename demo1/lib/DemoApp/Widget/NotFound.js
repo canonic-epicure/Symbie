@@ -1,10 +1,8 @@
 Class('DemoApp.Widget.NotFound', {
     
-    xtype   : 'demoapp-widget-notfound',
+    isa     : Ext.Container,
     
-    isa : 'Symbie.Widget.Container',
-    
-    use : [ 'ExtX.Layout.Center' ],
+    use     : [ 'ExtX.Layout.Center' ],
     
 
     before : {

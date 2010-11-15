@@ -10,22 +10,38 @@ Class('DemoApp', {
     
     
     use         : [ 
-//        'DemoApp.Widget.Root' 
+        'DemoApp.Widget.Root',
+        'DemoApp.Layout.Site',
+        'DemoApp.Widget.Header',
+        'DemoApp.Widget.Footer'
     ],
     
     
     has : {
+        root            : null
     },
     
     
     methods : {
         
-        createPath : function (str) {
+        createMainLayout : function (root) {
+            var layout          = root.add({ 
+                xtype       : 'DemoApp.Layout.Site',
+                
+                slot        : 'siteLayout'
+            })
             
+            var layoutSlots     = layout.slots 
+            
+            layoutSlots.header.add({ xtype : 'DemoApp.Widget.Header' })
+            layoutSlots.footer.add({ xtype : 'DemoApp.Widget.Footer' })
         },
         
         
-        ACTIVATE : function () {
+        ACTIVATE : function (c) {
+            var root = c.stash.root = this.root
+            
+            root.removeAll()
         }
     },
     
@@ -35,6 +51,7 @@ Class('DemoApp', {
         methods : {
             
             setup : function () {
+                var me      = this
                 
                 this.AND(function () {
                     
@@ -42,9 +59,8 @@ Class('DemoApp', {
                     
                     Ext.onReady(function () {
                         
-                        Ext.getBody().createChild({
-                            tag     : 'div',
-                            id      : 'content'
+                        me.root = new DemoApp.Widget.Root({
+                            app   : this
                         })
                         
                         CONTINUE()
@@ -61,14 +77,23 @@ Class('DemoApp', {
         
         '/' : function (context) {
             
-            context.call('/')
+            var root = context.stash.root
+            
+            this.createMainLayout(root)
+            
+            root.slots.siteLayout.slots.center.add({ xtype : 'DemoApp.Widget.Home' })
             
             this.CONTINUE()
         },
         
         
         '/home' : function (context) {
-            Ext.get('content').update('HOME')
+            
+            var root = context.stash.root
+            
+            this.createMainLayout(root)
+            
+            root.slots.siteLayout.slots.center.add({ xtype : 'DemoApp.Widget.Home' })
             
             this.CONTINUE()
         },

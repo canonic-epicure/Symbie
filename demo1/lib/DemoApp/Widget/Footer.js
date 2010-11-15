@@ -2,6 +2,7 @@ Class('DemoApp.Widget.Footer', {
     
     isa : 'SymbieX.Template.Shotenjin.Container',
     
+    
     does : 'Symbie.Widget',
     
     use : 'DemoApp.Template.Base',

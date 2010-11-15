@@ -1,7 +1,5 @@
 Class('DemoApp.Widget.News', {
     
-    xtype   : 'demoapp-widget-news',
-    
     isa : 'SymbieX.Template.Shotenjin.Container',
     
     use : 'DemoApp.Template.Base',

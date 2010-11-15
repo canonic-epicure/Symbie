@@ -1,6 +1,6 @@
 Class('DemoApp.Widget.Header', {
     
-    isa : 'Symbie.Widget.Container',
+    isa : Ext.Container,
     
     
     use : [ 'ExtX.Layout.ColumnFit', 'DemoApp.Control.Button' ],
@@ -89,11 +89,6 @@ Class('DemoApp.Widget.Header', {
             })
             
             this.el.appendChild(div)
-        },
-        
-        
-        initComponent : function () {
-            
         }
         //eof initComponent
     }

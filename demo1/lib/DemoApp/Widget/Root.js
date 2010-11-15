@@ -4,9 +4,13 @@ Class('DemoApp.Widget.Root', {
     
     
     has : {
-        title : 'Symbie test application',
+        app     : {
+            required         : true
+        },
         
-        layout : 'card'
+        title   : 'Symbie test application',
+        
+        layout  : 'card'
     },
     
     
