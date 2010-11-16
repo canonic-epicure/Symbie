@@ -25,32 +25,29 @@ Class('DemoApp', {
     
     methods : {
         
-        createMainLayout : function (root) {
-            var layout          = root.add({ 
+        createMainLayout : function (context) {
+            
+            context.stash.root.activate(context, { 
                 xtype       : 'DemoApp.Layout.Site',
                 
-                slot        : 'siteLayout'
+                slot        : 'mainLayout',
+
+                children    : {
+                    header  : { xtype : 'DemoApp.Widget.Header' },
+                    
+                    footer  : { xtype : 'DemoApp.Widget.Footer' }
+                }
             })
-            
-            var layoutSlots     = layout.slots 
-            
-            layoutSlots.header.add({ xtype : 'DemoApp.Widget.Header' })
-            layoutSlots.footer.add({ xtype : 'DemoApp.Widget.Footer' })
         },
         
         
         ACTIVATE : function (c) {
             var root = c.stash.root = this.root
-            
-            root.removeAll()
         },
         
         
         FINALIZE : function (c) {
             var root = c.stash.root
-            
-//            root.slots.siteLayout.slots.center.layout.setActiveItem(root.slots.siteLayout.slots.home)
-            root.setActiveSlot('siteLayout')
             
             root.doLayout()
         }
@@ -87,14 +84,13 @@ Class('DemoApp', {
     routes : {
         
         '/' : function (context) {
-            
             var root = context.stash.root
             
-            this.createMainLayout(root)
+            this.createMainLayout(context)
             
-            var home = root.slots.siteLayout.slots.center.add({ xtype : 'DemoApp.Widget.Home', slot : 'home' })
-            
-//            root.slots.siteLayout.slots.center.layout.setActiveItem(home)
+            root.slots.mainLayout.slots.center.activate(context, {
+                xtype : 'DemoApp.Widget.Home'
+            })
             
             this.CONTINUE()
         },
@@ -104,30 +100,46 @@ Class('DemoApp', {
             
             var root = context.stash.root
             
-            this.createMainLayout(root)
-            
-            root.slots.siteLayout.slots.center.add({ xtype : 'DemoApp.Widget.Home' })
+//            this.createMainLayout(root)
             
             this.CONTINUE()
         },
         
         
         '/sample/:value' : function (context, value) {
-            Ext.get('content').update('VALUE: ' + value)
+            var root = context.stash.root
+            
+//            this.createMainLayout(context)
+//            
+//            root.slots.mainLayout.slots.center.activate(context, {
+//                xtype : 'DemoApp.Widget.Home'
+//            })
             
             this.CONTINUE()
         },
         
         
-        '/special-offer' : function (context) {
-//            Ext.get('content').update('Special offer page')
+        '/special-offer' : {
+            use     : 'DemoApp.Widget.SpecialOffer',
             
-            this.CONTINUE()
-        },
+            action  : function (context) {
+                var root = context.stash.root
+                
+                this.createMainLayout(context)
+                
+                root.slots.mainLayout.slots.center.activate(context, {
+                    xtype : 'DemoApp.Widget.SpecialOffer'
+                })
+                
+                this.CONTINUE()
+            }
+        }, 
         
         
         '/*' : function (context) {
-            Ext.get('content').update('404 - Page not found')
+            var root = context.stash.root
+            
+//            this.createMainLayout(root)
             
             this.CONTINUE()
         },

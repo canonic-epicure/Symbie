@@ -1,10 +1,9 @@
 Class('DemoApp.Widget.SpecialOffer', {
     
-    xtype   : 'demoapp-widget-specialoffer',
+    isa : Ext.Container,
     
-    isa : 'Symbie.Widget.Container',
     
-    use : [ 'ExtX.Layout.Center' ],
+    use : [ 'ExtX.Layout.CenterBoth' ],
     
     
     has : {
@@ -18,7 +17,7 @@ Class('DemoApp.Widget.SpecialOffer', {
             
             Ext.apply(this, {
                 
-                layout : 'center',
+                layout : 'center-both',
                 
                 items : [
                     {

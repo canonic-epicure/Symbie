@@ -19,7 +19,28 @@ Class('DemoApp.Widget.Home', {
                 
                 tbar    : [
                     {
-                        text    : 'Yo'
+                        text    : 'Special offer',
+                        
+                        handler : function () {
+                            
+                            DemoApp().dispatch('/special-offer').now()
+                        }
+                    },
+                    {
+                        text    : 'Sample',
+                        
+                        handler : function () {
+                            
+                            DemoApp().dispatch('/sample/123').now()
+                        }
+                    },
+                    {
+                        text    : 'CatchAll',
+                        
+                        handler : function () {
+                            
+                            DemoApp().dispatch('/123').now()
+                        }
                     }
                 ],
                 

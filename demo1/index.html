@@ -19,10 +19,24 @@
 		
 		<script type="text/javascript" src="/jsan/ExtX/Reference/Slot.js"></script>
 		
+		
+        <link rel="stylesheet" type="text/css" href="/jsan/ExtX/Layout/static/ExtX.Layout.RowFit.css">
+        <link rel="stylesheet" type="text/css" href="/jsan/ExtX/Layout/static/ExtX.Layout.ColumnFit.css">
+        <link rel="stylesheet" type="text/css" href="/jsan/ExtX/Layout/static/ExtX.Layout.Center.css">
+
+        <link rel="stylesheet" type="text/css" href="static/css/DemoApp.css">
+        <link rel="stylesheet" type="text/css" href="static/css/DemoApp.Control.Button.css">
+		
+		
         <script type="text/javascript">
             JooseX.Namespace.Depended.Manager.my.INC = [ 'lib', '../lib', '/jsan' ]
             
-            use([ 'DemoApp' ], function () {
+            use([ 'DemoApp', 'SymbieX.ExtJS.Widget' ], function () {
+            	
+            	Ext.Container.meta.extend({
+            		
+            		does  : SymbieX.ExtJS.Widget
+            	})
             	
             	DemoApp().run('/').now()
             })
