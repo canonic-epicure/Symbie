@@ -5,7 +5,10 @@ Class('DemoApp', {
     trait       : 'JooseX.Class.Singleton',
     
     plugins     : [
-        'SymbieX.History'
+        'SymbieX.History',
+        'SymbieX.ExtJS.Widget',
+        'SymbieX.ExtJS.DomReady',
+        'SymbieX.ExtJS.Shotenjin'
     ],
     
     
@@ -50,33 +53,13 @@ Class('DemoApp', {
             var root = c.stash.root
             
             root.doLayout()
-        }
-    },
-    
-    
-    continued : {
+        },
         
-        methods : {
-            
-            setup : function () {
-                var me      = this
-                
-                this.AND(function () {
-                    
-                    var CONTINUE = this.getCONTINUE()
-                    
-                    Ext.onReady(function () {
-                        
-                        me.root = new DemoApp.Widget.Root({
-                            app   : this
-                        })
-                        
-                        CONTINUE()
-                    })
-                })
-                
-                this.SUPER().now()
-            }
+        
+        onDomReady : function () {
+            this.root = new DemoApp.Widget.Root({
+                app   : this
+            })
         }
     },
     

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
-		<script type="text/javascript" src="../lib/Task/Symbie/Bundle.js"></script>
+		<script type="text/javascript" src="../lib/Task/Symbie/ExtJSBundle.js"></script>
 	
 		<!-- Ext bridge  -->
 		
@@ -31,12 +31,7 @@
         <script type="text/javascript">
             JooseX.Namespace.Depended.Manager.my.INC = [ 'lib', '../lib', '/jsan' ]
             
-            use([ 'DemoApp', 'SymbieX.ExtJS.Widget' ], function () {
-            	
-            	Ext.Container.meta.extend({
-            		
-            		does  : SymbieX.ExtJS.Widget
-            	})
+            use([ 'DemoApp' ], function () {
             	
             	DemoApp().run('/').now()
             })

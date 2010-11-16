@@ -51,6 +51,16 @@ COMPONENTS = {
         "+Prereq",
         
         "+Core"
+    ],
+    
+    
+    "ExtJSBundle" : [
+        "+Bundle",
+        
+        "SymbieX.ExtJS.DomReady",
+        "SymbieX.ExtJS.Shotenjin",
+        "SymbieX.ExtJS.Shotenjin.Template",
+        "SymbieX.ExtJS.Widget"
     ]
 } 
 

@@ -7,7 +7,7 @@ Class('DemoApp.Layout.Site', {
     
     
     has     : {
-        slots       : true,
+        slots       : true
     },
     
     
