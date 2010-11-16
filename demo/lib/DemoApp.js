@@ -37,8 +37,6 @@ Class('DemoApp', {
         
         onDispatchException : function (router, exception) {
             
-            debugger
-            
             Ext.Msg.show({
                title    : 'Error:',
                msg      : exception,
