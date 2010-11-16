@@ -89,16 +89,20 @@ Class('DemoApp', {
         },
         
         
-        '/sample/:value' : function (context, value) {
-            var root = context.stash.root
+        '/sample/:value' : {
+            use     : 'DemoApp.Widget.Sample',
             
-//            this.createMainLayout(context)
-//            
-//            root.slots.mainLayout.slots.center.activate(context, {
-//                xtype : 'DemoApp.Widget.Home'
-//            })
-            
-            this.CONTINUE()
+            action  : function (context, value) {
+                var root = context.stash.root
+                
+                this.createMainLayout(context)
+                
+                root.slots.mainLayout.slots.center.activate(context, {
+                    xtype : 'DemoApp.Widget.Sample'
+                })
+                
+                this.CONTINUE()
+            }
         },
         
         
