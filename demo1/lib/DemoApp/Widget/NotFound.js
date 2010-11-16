@@ -2,7 +2,7 @@ Class('DemoApp.Widget.NotFound', {
     
     isa     : Ext.Container,
     
-    use     : [ 'ExtX.Layout.Center' ],
+    use     : [ 'ExtX.Layout.CenterBoth' ],
     
 
     before : {
@@ -11,7 +11,7 @@ Class('DemoApp.Widget.NotFound', {
             
             Ext.apply(this, {
                 
-                layout : 'center',
+                layout : 'center-both',
                 
                 items : [
                     {

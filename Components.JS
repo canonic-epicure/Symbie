@@ -63,4 +63,3 @@ COMPONENTS = {
         "SymbieX.ExtJS.Widget"
     ]
 } 
-

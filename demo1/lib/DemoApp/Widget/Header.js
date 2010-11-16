@@ -69,9 +69,9 @@ Class('DemoApp.Widget.Header', {
                         
                         iconCls : 'demoapp-icon-bananas-bad',
                         
-                        text    : 'Deferred error',
+                        text    : 'Error',
                         
-                        dispatchTo : '/deferred-error'
+                        dispatchTo : '/error'
                     }
                 ]
             })

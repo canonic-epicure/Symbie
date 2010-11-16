@@ -26,7 +26,30 @@ Class('DemoApp', {
     },
     
     
+    after : {
+        initialize : function () {
+            this.on('dispatchException', this.onDispatchException, this)
+        }
+    },
+    
+    
     methods : {
+        
+        onDispatchException : function (router, exception) {
+            
+            debugger
+            
+            Ext.Msg.show({
+               title    : 'Error:',
+               msg      : exception,
+               
+               buttons  : Ext.Msg.OK,
+               icon     : Ext.MessageBox.ERROR
+            })
+            
+            return false
+        },
+        
         
         createMainLayout : function (context) {
             
@@ -67,6 +90,11 @@ Class('DemoApp', {
     routes : {
         
         '/' : function (context) {
+            context.call('/home').now()
+        },
+        
+        
+        '/home' : function (context) {
             var root = context.stash.root
             
             this.createMainLayout(context)
@@ -74,16 +102,6 @@ Class('DemoApp', {
             root.slots.mainLayout.slots.center.activate(context, {
                 xtype : 'DemoApp.Widget.Home'
             })
-            
-            this.CONTINUE()
-        },
-        
-        
-        '/home' : function (context) {
-            
-            var root = context.stash.root
-            
-//            this.createMainLayout(root)
             
             this.CONTINUE()
         },
@@ -123,12 +141,18 @@ Class('DemoApp', {
         }, 
         
         
-        '/*' : function (context) {
-            var root = context.stash.root
+        '/*' : {
+            use     : 'DemoApp.Widget.NotFound',
             
-//            this.createMainLayout(root)
-            
-            this.CONTINUE()
+            action  : function (context) {
+                var root = context.stash.root
+                
+                root.activate(context, { 
+                    xtype       : 'DemoApp.Widget.NotFound'
+                })
+                
+                this.CONTINUE()
+            }
         },
         
         
@@ -137,27 +161,3 @@ Class('DemoApp', {
         }
     }
 })
-
-
-//    after : {
-//        initialize : function () {
-//            this.on('dispatchException', this.onDispatchException, this)
-//        }
-//    },
-//    
-//    
-//    methods : {
-//        
-//        onDispatchException : function (router, exception) {
-//            
-//            Ext.Msg.show({
-//               title    : 'Error:',
-//               msg      : exception,
-//               
-//               buttons  : Ext.Msg.OK,
-//               icon     : Ext.MessageBox.ERROR
-//            })
-//            
-//            return false
-//        }
-//    }
