@@ -3,7 +3,7 @@ Class('DemoApp.Control.Button', {
     isa : Ext.Container,
     
     use : [
-        'DemoApp.Template.Base'
+        'SymbieX.ExtJS.Shotenjin.Template'
     ],
     
     has : {
@@ -17,7 +17,7 @@ Class('DemoApp.Control.Button', {
         dispatchTo  : null,
         
         template    : function () {
-            return new DemoApp.Template.Base({
+            return new SymbieX.ExtJS.Shotenjin.Template({
                 
                 /*tj
                     [%\ this.a(dispatchTo) %]            
