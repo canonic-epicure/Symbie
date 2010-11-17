@@ -57,10 +57,20 @@ COMPONENTS = {
     "ExtJSBundle" : [
         "+Bundle",
         
+        "jsan:Task.ExtJS.Adapter.Ext",
+        
+        "jsan:JooseX.Bridge.Ext",
+        "jsan:JooseX.Meta.Lazy",
+        "jsan:JooseX.Bridge.Ext.LazyConvertor",
+        
+        "jsan:Task.ExtJS.Debug.All",
+        
         "SymbieX.ExtJS.DomReady",
         "SymbieX.ExtJS.Shotenjin",
         "SymbieX.ExtJS.Shotenjin.Template",
         "SymbieX.ExtJS.DispatchMask",
+        
+        "jsan:ExtX.Reference.Slot",
         "SymbieX.ExtJS.Widget"
     ]
 } 

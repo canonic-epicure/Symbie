@@ -8,7 +8,8 @@ Class('DemoApp', {
         'SymbieX.History',
         'SymbieX.ExtJS.Widget',
         'SymbieX.ExtJS.DomReady',
-        'SymbieX.ExtJS.Shotenjin'
+        'SymbieX.ExtJS.Shotenjin',
+        'SymbieX.ExtJS.DispatchMask'
     ],
     
     
