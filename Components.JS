@@ -60,6 +60,7 @@ COMPONENTS = {
         "SymbieX.ExtJS.DomReady",
         "SymbieX.ExtJS.Shotenjin",
         "SymbieX.ExtJS.Shotenjin.Template",
+        "SymbieX.ExtJS.DispatchMask",
         "SymbieX.ExtJS.Widget"
     ]
 } 
