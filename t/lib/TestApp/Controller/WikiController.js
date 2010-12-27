@@ -7,8 +7,6 @@ Class('TestApp.Controller.WikiController', {
     routes : {
         
         INDEX : {
-            map         : '',
-            
             action      : function () {
                 ACTION.push('TestApp.Controller.WikiController: INDEX')
                 
