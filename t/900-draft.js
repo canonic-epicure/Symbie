@@ -54,7 +54,7 @@ Class('App.Controller.Pictures', {
     
     isa     : 'Symbie.Controller',
     
-    prefix  : './pictures', // looks after Controller
+    prefix  : './pictures', 
 
     
     controllers        : [
