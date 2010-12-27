@@ -2,7 +2,6 @@ Class('TestApp.Controller.Pictures', {
     
     isa : 'Symbie.Controller',
     
-    
     controllers     : [
         'TestApp.Controller.WikiController',
         
@@ -76,6 +75,11 @@ Class('TestApp.Controller.Pictures', {
                 
                 this.CONTINUE()
             }
+        },
+        
+        
+        wiki : function () {
+            this.CONTINUE()
         }
     },
     

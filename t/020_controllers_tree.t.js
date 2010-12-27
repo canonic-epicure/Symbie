@@ -29,7 +29,9 @@ StartTest(function(t) {
         
         
         t.isDeeply(TestApp.meta.controllers, {
-            'TestApp.Controller.Pictures' : {},
+            'TestApp.Controller.Pictures' : {
+                prefix  : '/pictures'
+            },
             
             'TestApp.Controller.WikiController' : {},
             
@@ -55,7 +57,6 @@ StartTest(function(t) {
         
         t.ok(match, "Match for '/home' was found")
         t.ok(match.route == TestApp.meta.getRoute('home'), ".. and it has a correct route")
-        t.ok(match.path.length == 0, ".. match contains 0 path elements")
         t.isDeeply(match.parameters, {}, ".. match contains no parameters")
     
         
@@ -69,7 +70,6 @@ StartTest(function(t) {
         
         t.ok(match, "Match for '/' was found")
         t.ok(match.route == TestApp.meta.getRoute('/'), ".. and it has a correct route")
-        t.ok(match.path.length == 0, ".. match contains 0 path elements")
         t.isDeeply(match.parameters, {}, ".. match contains no parameters")
         
         
@@ -83,7 +83,7 @@ StartTest(function(t) {
         
         t.isaOk(picturesController, TestApp.Controller.Pictures, 'Correct controller was instantiated')
         
-        t.ok(picturesController.getFullPrefix() == '/pictures', 'Correct prefix for Pictures controller')
+        t.ok(picturesController.getFullPrefix() == '/pictures/', 'Correct prefix for Pictures controller')
         
         
         //==================================================================================================================================================================================
@@ -93,7 +93,6 @@ StartTest(function(t) {
         
         t.ok(match, "Match for '/pictures/all/12-34-1234/56-78-5678' was found")
         t.ok(match.route == TestApp.Controller.Pictures.meta.getRoute('./all/:fromDate/:toDate'), ".. and it has a correct route")
-        t.ok(match.path.length == 0, ".. match contains 0 path elements")
         
         var fromDate = match.parameters.fromDate
         
@@ -129,89 +128,98 @@ StartTest(function(t) {
         
         t.ok(match, "Match for '/pictures/123/edit' was found")
         t.ok(match.route == TestApp.Controller.Pictures.meta.getRoute('editPicture'), ".. and it has a correct route")
-        t.ok(match.path.length == 0, ".. match contains 0 path elements")
         t.ok(match.parameters.id == '123', ".. match contains correct parameter")
         
         
         t.ok(match.asString({ id : 123 }) == '/pictures/123/edit', 'Route was stringified correctly')
-        
 
-        //==================================================================================================================================================================================
-        t.diag("Nested WikiController")
-        
-        var picturesWikiController = picturesController.controllers[ 'TestApp.Controller.WikiController' ]
-        
-        t.isaOk(picturesWikiController, TestApp.Controller.WikiController, 'Correct controller was instantiated')
-        
-        t.ok(picturesWikiController.getFullPrefix() == '/pictures/wiki', 'Correct prefix for nested WikiController controller')
-        
         
         //==================================================================================================================================================================================
-        t.diag("Finding route for '/pictures/wiki/'")
+        t.diag("Finding route for '/pictures/wiki'")
         
-        match = app.findMatch('/pictures/wiki/')
+        match = app.findMatch('/pictures/wiki')
         
         t.ok(match, "Match for '/pictures/wiki' was found")
-        t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('INDEX'), ".. and it has a correct route")
+        t.ok(match.route == TestApp.Controller.Pictures.meta.getRoute('wiki'), ".. and it has a correct route")
         
-        t.ok(match.asString() == '/pictures/wiki/', 'Route was stringified correctly')
-
+        t.ok(match.asString() == '/pictures/wiki', 'Route was stringified correctly')
         
-        //==================================================================================================================================================================================
-        t.diag("Finding route for '/pictures/wiki/123'")
-        
-        match = app.findMatch('/pictures/wiki/123')
-        
-        t.ok(match, "Match for '/pictures/wiki/123' was found")
-        t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('wikiPage'), ".. and it has a correct route")
-        t.ok(match.parameters.page == '123', 'Correct parameter extracted')
-        
-        t.ok(match.asString({ page : 123 }) == '/pictures/wiki/123', 'Route was stringified correctly')
-
-        
-        //==================================================================================================================================================================================
-        t.diag("Finding route for '/pictures/wiki/edit'")
-
-        match = app.findMatch('/pictures/wiki/edit')
-        
-        t.ok(match, "Match for '/pictures/wiki/edit' was found")
-        t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('editWiki'), ".. and it has a correct route")
-        
-        t.ok(match.asString() == '/pictures/wiki/edit', 'Route was stringified correctly')
-        
-        
-        //==================================================================================================================================================================================
-        t.diag("Finding route for '/pictures/wiki/foo/bar'")
-        
-        match = app.findMatch('/pictures/wiki/foo/bar')
-        
-        t.ok(match, "Match for '/pictures/wiki/foo/bar' was found")
-        t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('catchAll'), ".. and it has a correct route")
-        t.isDeeply(match.path, [ 'foo', 'bar' ], ".. Correct path extracted from wildcard match")
-        
-        t.ok(match.asString(match.path) == '/pictures/wiki/foo/bar', 'Route was stringified correctly')
-        
-
-        //==================================================================================================================================================================================
-        t.diag("Nested SymbieX controller")
-        
-        var picturesSymbieXController = picturesController.controllers[ 'SymbieX.Controller.FooBar' ]
-        
-        t.isaOk(picturesSymbieXController, SymbieX.Controller.FooBar, 'Correct controller was instantiated')
-        
-        t.ok(picturesSymbieXController.getFullPrefix() == '/pictures/foobar/prefix', 'Correct prefix for nested SymbieX controller')
-        
-        
-        //==================================================================================================================================================================================
-        t.diag("Finding route for '/pictures/foobar/prefix/foobar/123/456'")
-        
-        match = app.findMatch('/pictures/foobar/prefix/foobar/123/456')
-        
-        t.ok(match, "Match for '/pictures/foobar/prefix/foobar/123/456' was found")
-        t.ok(match.route == SymbieX.Controller.FooBar.meta.getRoute('foobar/*'), ".. and it has a correct route")
-        t.isDeeply(match.path, [ '123', '456' ], ".. Correct path extracted from wildcard match")
-        
-        t.ok(match.asString(match.path) == '/pictures/foobar/prefix/foobar/123/456', 'Route was stringified correctly')
+            //==================================================================================================================================================================================
+            t.diag("Nested WikiController")
+            
+            var picturesWikiController = picturesController.controllers[ 'TestApp.Controller.WikiController' ]
+            
+            t.isaOk(picturesWikiController, TestApp.Controller.WikiController, 'Correct controller was instantiated')
+            
+            t.ok(picturesWikiController.getFullPrefix() == '/pictures/wiki/', 'Correct prefix for nested WikiController controller')
+            
+            
+            //==================================================================================================================================================================================
+            t.diag("Finding route for '/pictures/wiki/'")
+            
+            match = app.findMatch('/pictures/wiki/')
+            
+            t.ok(match, "Match for '/pictures/wiki' was found")
+            t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('INDEX'), ".. and it has a correct route")
+            
+            t.ok(match.asString() == '/pictures/wiki/', 'Route was stringified correctly')
+    
+            
+            //==================================================================================================================================================================================
+            t.diag("Finding route for '/pictures/wiki/123'")
+            
+            match = app.findMatch('/pictures/wiki/123')
+            
+            t.ok(match, "Match for '/pictures/wiki/123' was found")
+            t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('wikiPage'), ".. and it has a correct route")
+            t.ok(match.parameters.page == '123', 'Correct parameter extracted')
+            
+            t.ok(match.asString({ page : 123 }) == '/pictures/wiki/123', 'Route was stringified correctly')
+    
+            
+            //==================================================================================================================================================================================
+            t.diag("Finding route for '/pictures/wiki/edit'")
+    
+            match = app.findMatch('/pictures/wiki/edit')
+            
+            t.ok(match, "Match for '/pictures/wiki/edit' was found")
+            t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('editWiki'), ".. and it has a correct route")
+            
+            t.ok(match.asString() == '/pictures/wiki/edit', 'Route was stringified correctly')
+            
+            
+            //==================================================================================================================================================================================
+            t.diag("Finding route for '/pictures/wiki/foo/bar'")
+            
+            match = app.findMatch('/pictures/wiki/foo/bar')
+            
+            t.ok(match, "Match for '/pictures/wiki/foo/bar' was found")
+            t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('catchAll'), ".. and it has a correct route")
+            t.isDeeply(match.parameters.splat, [ 'foo', 'bar' ], ".. Correct path extracted from wildcard match")
+            
+            t.ok(match.asString({ splat : [ 'foo', 'bar' ] }) == '/pictures/wiki/foo/bar', 'Route was stringified correctly')
+            
+    
+            //==================================================================================================================================================================================
+            t.diag("Nested SymbieX controller")
+            
+            var picturesSymbieXController = picturesController.controllers[ 'SymbieX.Controller.FooBar' ]
+            
+            t.isaOk(picturesSymbieXController, SymbieX.Controller.FooBar, 'Correct controller was instantiated')
+            
+            t.ok(picturesSymbieXController.getFullPrefix() == '/pictures/foobar/prefix/', 'Correct prefix for nested SymbieX controller')
+            
+            
+            //==================================================================================================================================================================================
+            t.diag("Finding route for '/pictures/foobar/prefix/foobar/123/456'")
+            
+            match = app.findMatch('/pictures/foobar/prefix/foobar/123/456')
+            
+            t.ok(match, "Match for '/pictures/foobar/prefix/foobar/123/456' was found")
+            t.ok(match.route == SymbieX.Controller.FooBar.meta.getRoute('foobar/*'), ".. and it has a correct route")
+            t.isDeeply(match.parameters.splat, [ '123', '456' ], ".. Correct path extracted from wildcard match")
+            
+            t.ok(match.asString({ splat : [ '123', '456' ] }) == '/pictures/foobar/prefix/foobar/123/456', 'Route was stringified correctly')
         
         
     //==================================================================================================================================================================================
@@ -229,12 +237,46 @@ StartTest(function(t) {
         t.ok(match.asString() == '/wiki/', 'Route was stringified correctly')
         
         
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/wiki' - should find the same route")
+        
+        match = app.findMatch('/wiki')
+        
+        t.ok(match, "Match for '/wiki' was found")
+        t.ok(match.route == TestApp.Controller.WikiController.meta.getRoute('INDEX'), ".. and it has a correct route")
+        
+        t.ok(match.asString() == '/wiki/', 'Route was stringified correctly')
+        
+
+        
+    //==================================================================================================================================================================================
+    t.diag("SymbieX controller")
+
+        var symbieXController = app.controllers[ 'SymbieX.Controller.FooBar' ]
+        
+        t.isaOk(symbieXController, SymbieX.Controller.FooBar, 'Correct controller was instantiated')
+        
+        t.ok(symbieXController.getFullPrefix() == '/barbaz/', 'Correct prefix for SymbieX controller')
+    
+        
+        //==================================================================================================================================================================================
+        t.diag("Finding route for '/barbaz/foobar/'")
+        
+        match = app.findMatch('/barbaz/foobar/')
+        
+        t.ok(match, "Match for '/barbaz/foobar/' was found")
+        t.ok(match.route == SymbieX.Controller.FooBar.meta.getRoute('foobar/*'), ".. and it has a correct route")
+        t.isDeeply(match.parameters.splat, [ '' ], ".. Correct path extracted from wildcard match")
+        
+        t.ok(match.asString({ splat : [ '' ] }) == '/barbaz/foobar/', 'Route was stringified correctly')
+        
+        
     //==================================================================================================================================================================================
     t.diag("Missing route")
         
         t.throws_ok(function () {
             
-            match = app.findMatch('')
+            match = app.findMatch('argh')
             
         }, "Can't find route for the path", 'Missing route was detected')
         

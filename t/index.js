@@ -16,7 +16,7 @@ var INC = (isNode ? require.paths : []).concat('lib', '../lib', '/jsan')
 Harness.configure({
 	title : 'Symbie test suite',
     
-    passThroughEx : true,
+//    passThroughEx : true,
 	
 	preload : [
         'Task.Symbie.Prereq',

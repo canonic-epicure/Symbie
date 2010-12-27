@@ -70,6 +70,22 @@ StartTest(function(t) {
     t.ok(param.tokens[4].token == ':toDate', "The value of the 5th token is correct")
     t.ok(param.tokens[4].regex.source == '(.*)', "The regex of the 5th has default value")
     
+    
+    //==================================================================================================================================================================================
+    t.diag("Wildcard route")
+    
+    var wildcard = new Symbie.Meta.Route({
+        map         : '/pictures/*',
+        
+        action      : function () {}
+    })
+    
+    t.ok(wildcard, "'Symbie.Meta.Route' was successfully instantiated")
+    
+    t.ok(wildcard.tokens.length == 3, "Route has 3 tokens")
+    t.ok(wildcard.tokens[0] instanceof Symbie.Meta.Route.Token.Root, "The 1st token is a root token")
+    t.ok(wildcard.tokens[1] instanceof Symbie.Meta.Route.Token.String, "The 2nd token is a string token")
+    t.ok(wildcard.tokens[2] instanceof Symbie.Meta.Route.Token.WildCard, "The 3rd token is a wild card")
         
     t.done()
 })

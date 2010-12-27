@@ -5,9 +5,13 @@ Class('TestApp', {
     trait           : 'JooseX.Class.Singleton',
     
     controllers     : [
-        'TestApp.Controller.Pictures',
         'TestApp.Controller.WikiController',
+        
         {
+            'TestApp.Controller.Pictures' : {
+                prefix  : '/pictures'
+            },
+            
             'SymbieX.Controller.FooBar' : {
                 prefix  : 'barbaz'
             }
