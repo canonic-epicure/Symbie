@@ -36,7 +36,7 @@ Class('DemoApp', {
     
     methods : {
         
-        onDispatchException : function (router, exception) {
+        onDispatchException : function (event, exception) {
             
             Ext.Msg.show({
                title    : 'Error:',
