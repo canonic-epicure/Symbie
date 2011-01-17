@@ -21,7 +21,7 @@ Harness.configure({
 	preload : [
         'Task.Symbie.Prereq',
         {
-            text : "JooseX.Namespace.Depended.Manager.my.INC = " + Harness.prepareINC(INC)
+            text : "use.paths = " + Harness.prepareINC(INC)
         },
         'Task.Symbie.Test'
     ]
@@ -29,13 +29,24 @@ Harness.configure({
 
 
 Harness.start(
+    {
+        url         : '001_sanity.t.js',
+        preload     : [
+            'jsan:Task.Joose.Core',
+            'jsan:Task.JooseX.Namespace.Depended.Auto',
+            {
+                text : "use.paths = " + Harness.prepareINC(INC)
+            }
+        ]
+    },
+    
 	'010_route.t.js',
     {
         url         : '020_controllers_tree.t.js',
         preload     : [
             'Task.Symbie.Prereq',
             {
-                text : "JooseX.Namespace.Depended.Manager.my.INC = " + Harness.prepareINC(INC)
+                text : "use.paths = " + Harness.prepareINC(INC)
             },
             'Task.Symbie.Core'
         ]
