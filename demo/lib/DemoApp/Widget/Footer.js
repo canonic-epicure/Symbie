@@ -22,7 +22,7 @@ Class('DemoApp.Widget.Footer', {
                     
                     [%\ this.a('/sample/AnotherValue') %]Another Sample</a> |
                     
-                    [%\ this.a('/specialOffer') %]Special Offer</a>
+                    [%\ this.a('/special-offer') %]Special Offer</a>
                 tj*/
             })
         }
