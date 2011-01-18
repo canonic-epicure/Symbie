@@ -3,7 +3,7 @@ Class('DemoApp.Widget.Footer', {
     isa : 'ExtX.Shotenjin.Container',
     
     use : [
-        'SymbieX.ExtJS.Shotenjin.Template'
+        'SymbieX.ExtJS.Shotenjin'
     ],
     
 
@@ -13,7 +13,7 @@ Class('DemoApp.Widget.Footer', {
         cls         : 'footer',
         
         template    : function () {
-            return new SymbieX.ExtJS.Shotenjin.Template({
+            return new SymbieX.ExtJS.Shotenjin({
                 
                 /*tj
                     <div class="demoapp-footer-background"></div>

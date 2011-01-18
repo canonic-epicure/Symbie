@@ -66,8 +66,8 @@ COMPONENTS = {
         "jsan:Task.ExtJS.Debug.All",
         
         "SymbieX.ExtJS.DomReady",
+        "SymbieX.ExtJS.Links",
         "SymbieX.ExtJS.Shotenjin",
-        "SymbieX.ExtJS.Shotenjin.Template",
         "SymbieX.ExtJS.DispatchMask",
         
         "jsan:ExtX.Reference.Slot",
