@@ -74,7 +74,9 @@ COMPONENTS = {
         "SymbieX.ExtJS.Widget",
         
         "jsan:Shotenjin.Template",
+        "SymbieX.ExtJS.Shotenjin",
         
-        "SymbieX.ExtJS.Shotenjin"
+        "jsan:Johnny.Mnemonic",
+        "SymbieX.History"
     ]
 } 
