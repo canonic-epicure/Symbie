@@ -64,19 +64,18 @@ COMPONENTS = {
         "jsan:JooseX.Bridge.Ext.LazyConvertor",
         
         "jsan:Task.ExtJS.Debug.All",
+        "jsan:ExtX.Reference.Slot",
+        
+        "jsan:Shotenjin.Template",
+        "jsan:Johnny.Mnemonic",
         
         "SymbieX.ExtJS.DomReady",
         "SymbieX.ExtJS.Links",
         "SymbieX.ExtJS.Shotenjin",
         "SymbieX.ExtJS.DispatchMask",
         
-        "jsan:ExtX.Reference.Slot",
         "SymbieX.ExtJS.Widget",
         
-        "jsan:Shotenjin.Template",
-        "SymbieX.ExtJS.Shotenjin",
-        
-        "jsan:Johnny.Mnemonic",
         "SymbieX.History"
     ]
 } 
