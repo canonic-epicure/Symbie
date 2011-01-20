@@ -71,6 +71,10 @@ COMPONENTS = {
         "SymbieX.ExtJS.DispatchMask",
         
         "jsan:ExtX.Reference.Slot",
-        "SymbieX.ExtJS.Widget"
+        "SymbieX.ExtJS.Widget",
+        
+        "jsan:Shotenjin.Template",
+        
+        "SymbieX.ExtJS.Shotenjin"
     ]
 } 

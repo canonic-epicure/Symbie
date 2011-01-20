@@ -53,5 +53,12 @@ Harness.start(
     },
     '030_dispatch_basics.t.js',
     '031_dispatch_pre.t.js',
-    '040_dispatch_advanced.t.js'
+    '040_dispatch_advanced.t.js',
+    
+    {
+        url         : '200_history.t.js'
+//        ,
+//        target      : 'Window'
+    }
+    
 )
