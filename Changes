@@ -2,6 +2,8 @@ Release history for Symbie
 
 {{$NEXT}}
 
+0.0.2     2011-01-20 14:29
+
         fixed double inclusion of Shotenjin template into bundle
 
 0.0.1     2011-01-20 13:31
